@@ -19,7 +19,7 @@ body {
 }
 
 .question__image, .info__image {
-  background-image: url("../img/unit_pic/humans/footman.jpg");
+  background-image: url("../img/unit_pic/humans/peasant.jpg");
   width: 150px;
   height: 150px;
   background-size: cover;
