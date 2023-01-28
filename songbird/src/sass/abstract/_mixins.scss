@@ -6,3 +6,17 @@
         flex-basis: $width;
     }
 }
+
+@mixin unit-name($font-size,$top,$left){
+    position: relative;
+    font-size: $font-size;
+    &::after{
+        position: absolute;
+        content: '';
+        height: 1px;
+        width: 100%;
+        background-color: $color-add;
+        top:$top;
+        left:$left;
+    }
+}

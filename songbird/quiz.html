@@ -8,7 +8,7 @@
     <link rel="stylesheet" href="./src/sass/style.css" />
     <link rel="shortcut icon" type="image/svg" href="./src/img/logo.svg" />
   </head>
-  <body>
+  <body class="body">
     <header class="header">
       <div class="wrapper header__wrapper">
         <div class="header__logo">
@@ -45,6 +45,7 @@
                   ></object>
                 </div>
                 <div class="player__playtime"></div>
+                <div class="player__info"></div>
               </div>
             </div>
           </div>
@@ -71,7 +72,31 @@
                 </li>
               </ul>
             </div>
-            <div class="quiz__info quiz__block"></div>
+            <div class="quiz__block">
+              <div class="quiz__info">
+                <div class="info__image"></div>
+                <div class="info__body">
+                  <div class="info__name">Пехотинец</div>
+                  <div class="info__name">Footman</div>
+                  <div class="info__player">
+                    <div class="player__control">
+                      <object
+                        type="image/svg+xml"
+                        data="./src/img/play.svg"
+                        class="play-object"
+                      ></object>
+                    </div>
+                    <div class="player__playtime"></div>
+                    <div class="player__info"></div>
+                  </div>
+                </div>
+              </div>
+
+              <div class="info__description">
+                Cильный и выносливый горожанин Азерота, который добровольно
+                пришел в армию Альянса для защиты своих земель.
+              </div>
+            </div>
           </div>
           <button class="button quiz__button button_active">
             Следующий уровень

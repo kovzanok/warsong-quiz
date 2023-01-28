@@ -19,35 +19,20 @@
   margin-top: 0;
 }
 
-.question__image {
-  background-image: url("../img/unit_pic/humans/footman.jpg");
-  width: 150px;
-  height: 150px;
-  background-size: cover;
-  background-position: center;
-  border-radius: 20px;
+.question__image,.info__image {
+  @extend %unit-image;
 }
 
-.question__body{
-    padding-left: 50px;
-    flex-basis: 80%;
-    display: flex;
-    flex-direction: column;
-    justify-content: space-between;
+.question__body,.info__body{
+    @extend %unit-body;
 }
 
 .question__name{
-    position: relative;
-    font-size: 3rem;
-    &::after{
-        position: absolute;
-        content: '';
-        height: 1px;
-        width: 100%;
-        background-color: $color-add;
-        top:40px;
-        left:-25px;
-    }
+    @include unit-name($font-size: 3rem,$top:40px,$left:-25px);
+}
+
+.info__name{
+  @include unit-name($font-size: 2rem,$top:25px,$left:-15px);
 }
 .quiz__answers {
   background-color: $color-primary;
@@ -56,12 +41,16 @@
 .answers {
   display: flex;
   flex-direction: column;
+  height: 100%;
 }
 
 .answer {
   cursor: pointer;
   position: relative;
   padding: 10px;
+  flex-grow: 1;
+  display: flex;
+  align-items: center;
   border: 1px solid $color-border;
   &:first-child {
     border-radius: 10px 10px 0 0;
@@ -84,4 +73,13 @@
   width: 15px;
   border-radius: 50%;
   margin-right: 10px;
+}
+
+.quiz__info{
+  display: flex;
+}
+
+
+.info__description{
+  padding-top: 10px;
 }

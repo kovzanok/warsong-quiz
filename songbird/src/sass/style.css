@@ -10,6 +10,31 @@ body {
   font-size: 2rem;
 }
 
+.question__player, .info__player {
+  width: 90%;
+  flex-basis: 60%;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.question__image, .info__image {
+  background-image: url("../img/unit_pic/humans/footman.jpg");
+  width: 150px;
+  height: 150px;
+  background-size: cover;
+  background-position: center;
+  border-radius: 20px;
+}
+
+.question__body, .info__body {
+  padding-left: 50px;
+  flex-basis: 80%;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
 html {
   font-size: 10px;
   color: #ffdf0e;
@@ -28,6 +53,10 @@ body {
     font-family: "Frizqt";
     src: url("../../fonts/FRIZQT__.woff") format("woff");
   }
+}
+
+.body {
+  justify-content: flex-start;
 }
 
 h1 {
@@ -396,20 +425,13 @@ ul {
   margin: 0;
 }
 
-.question__player {
-  width: 90%;
-  flex-basis: 60%;
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-}
-
 .player__control {
   display: flex;
   justify-content: center;
   align-items: center;
   border: 2px solid #1B389D;
   border-radius: 50%;
+  cursor: pointer;
 }
 
 .play-object {
@@ -423,6 +445,7 @@ ul {
   height: 5px;
   border-radius: 2px;
   background-color: #1B389D;
+  cursor: pointer;
 }
 
 .intro__wrapper {
@@ -477,23 +500,6 @@ ul {
   margin-top: 0;
 }
 
-.question__image {
-  background-image: url("../img/unit_pic/humans/footman.jpg");
-  width: 150px;
-  height: 150px;
-  background-size: cover;
-  background-position: center;
-  border-radius: 20px;
-}
-
-.question__body {
-  padding-left: 50px;
-  flex-basis: 80%;
-  display: flex;
-  flex-direction: column;
-  justify-content: space-between;
-}
-
 .question__name {
   position: relative;
   font-size: 3rem;
@@ -508,6 +514,20 @@ ul {
   left: -25px;
 }
 
+.info__name {
+  position: relative;
+  font-size: 2rem;
+}
+.info__name::after {
+  position: absolute;
+  content: "";
+  height: 1px;
+  width: 100%;
+  background-color: #1B389D;
+  top: 25px;
+  left: -15px;
+}
+
 .quiz__answers {
   background-color: #152F4B;
   border-radius: 10px;
@@ -516,12 +536,16 @@ ul {
 .answers {
   display: flex;
   flex-direction: column;
+  height: 100%;
 }
 
 .answer {
   cursor: pointer;
   position: relative;
   padding: 10px;
+  flex-grow: 1;
+  display: flex;
+  align-items: center;
   border: 1px solid #17120e;
 }
 .answer:first-child {
@@ -544,6 +568,14 @@ ul {
   width: 15px;
   border-radius: 50%;
   margin-right: 10px;
+}
+
+.quiz__info {
+  display: flex;
+}
+
+.info__description {
+  padding-top: 10px;
 }
 
 .header {

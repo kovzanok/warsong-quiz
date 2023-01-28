@@ -18,6 +18,10 @@ body {
   background-color: $color-add;
 }
 
+.body{
+  justify-content: flex-start;
+}
+
 h1 {
   font-size: 3rem;
 }

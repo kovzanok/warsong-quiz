@@ -1,11 +1,38 @@
-%font-primary{
-    font-family:'Times New Roman', Times, serif;
+%font-primary {
+  font-family: "Times New Roman", Times, serif;
 }
 
-%transition{
-    transition: all .3s ease;
+%transition {
+  transition: all 0.3s ease;
 }
 
-%font-size-primary{
-    font-size: 2rem;
+%font-size-primary {
+  font-size: 2rem;
 }
+
+%player {
+  width: 90%;
+  flex-basis: 60%;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+%unit-image {
+  background-image: url("../img/unit_pic/humans/footman.jpg");
+  width: 150px;
+  height: 150px;
+  background-size: cover;
+  background-position: center;
+  border-radius: 20px;
+}
+
+
+%unit-body{
+    padding-left: 50px;
+    flex-basis: 80%;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+}
+
