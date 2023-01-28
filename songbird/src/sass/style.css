@@ -6,6 +6,10 @@ button, a {
   transition: all 0.3s ease;
 }
 
+body {
+  font-size: 2rem;
+}
+
 html {
   font-size: 10px;
   color: #ffdf0e;
@@ -422,6 +426,27 @@ ul {
   padding-top: 60px;
 }
 
+.quiz__wrapper {
+  padding: 50px 0;
+}
+
+.quiz__question {
+  display: flex;
+  justify-content: space-between;
+  background-color: #152F4B;
+  border-radius: 20px;
+  padding: 30px;
+}
+
+.question__image {
+  background-image: url("../img/unit_pic/humans/footman.jpg");
+  width: 200px;
+  height: 200px;
+  background-size: cover;
+  background-position: center;
+  border-radius: 20px;
+}
+
 .header {
   background-color: #152F4B;
 }
@@ -430,10 +455,32 @@ ul {
   display: flex;
   justify-content: space-between;
   align-items: center;
+  flex-wrap: wrap;
 }
 
 .header__logo {
   padding-left: 90px;
+}
+
+.header__questions {
+  flex-basis: 100%;
+}
+
+.questions {
+  display: flex;
+  justify-content: space-between;
+}
+
+.question {
+  background-color: #000039;
+  padding: 10px 50px;
+  border: 1px solid #17120e;
+  border-radius: 5px;
+  text-align: center;
+  vertical-align: middle;
+}
+.question_active {
+  background-color: #1e37ac;
 }
 
 .wrapper {

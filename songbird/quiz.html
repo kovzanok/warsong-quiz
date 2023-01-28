@@ -1,12 +1,59 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Warsong</title>
-</head>
-<body>
-    
-</body>
+    <link rel="stylesheet" href="./src/sass/style.css" />
+    <link rel="shortcut icon" type="image/svg" href="./src/img/logo.svg" />
+  </head>
+  <body>
+    <header class="header">
+      <div class="wrapper header__wrapper">
+        <div class="header__logo">
+          <img class="logo-image" src="./src/img/logo.png" />
+        </div>
+        <div class="header__score">
+          <span class="score">Score: 0</span>
+        </div>
+        <div class="header__questions">
+          <ul class="questions">
+            <li class="question">Разминка</li>
+            <li class="question question_active">Альянс</li>
+            <li class="question">Нежить</li>
+            <li class="question">Ночные эльфы</li>
+            <li class="question">Орда</li>
+          </ul>
+        </div>
+      </div>
+    </header>
+    <main class="main">
+      <section class="quiz">
+        <div class="wrapper quiz__wrapper">
+          <div class="quiz__question">
+            <div class="question__image"></div>
+            <div class="question__body">
+              <div class="question__name">Пехотинец</div>
+              <div class="question__sound"></div>
+            </div>
+          </div>
+          <div class="layout-2-column">
+            <div class="quiz__answers">
+              <ul class="answers">
+                <li class="answer">Пехотинец</li>
+                <li class="answer">Артес</li>
+                <li class="answer">Чародейка</li>
+                <li class="answer">Крестьянин</li>
+                <li class="answer">Стрелок</li>
+                <li class="answer">Мурадин</li>
+              </ul>
+            </div>
+            <div class="quiz__info"></div>
+          </div>
+        </div>
+        <button class="quiz__button">Следующий уровень</button>
+      </section>
+    </main>
+  </body>
 </html>

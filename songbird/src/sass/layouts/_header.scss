@@ -1,12 +1,35 @@
-.header{
-    background-color: $color-primary;
+.header {
+  background-color: $color-primary;
 }
-.header__wrapper{
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
+.header__wrapper {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-wrap: wrap;
 }
 
-.header__logo{
-    padding-left: 90px;
+.header__logo {
+  padding-left: 90px;
+}
+
+.header__questions {
+  flex-basis: 100%;
+}
+
+.questions {
+  display: flex;
+  justify-content: space-between;
+}
+
+.question {
+  background-color: $color-link-background;
+
+  padding: 10px 50px;
+  border: 1px solid $color-border;
+  border-radius: 5px;
+  text-align: center;
+  vertical-align: middle;
+  &_active {
+    background-color: $color-link-background-active;
+  }
 }

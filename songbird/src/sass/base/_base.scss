@@ -11,6 +11,7 @@ body {
   @extend %font-primary;
   min-height: 100vh;
   font-family: "Frizqt", "Times New Roman", serif;
+  @extend %font-size-primary;
   display: flex;
   flex-direction: column;
   justify-content: space-between;
