@@ -20,3 +20,9 @@
         left:$left;
     }
 }
+
+@mixin player-button($url){
+    background-image: url($url);
+    background-position: center;
+    background-repeat: no-repeat;
+}

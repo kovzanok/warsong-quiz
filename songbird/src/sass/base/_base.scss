@@ -18,7 +18,7 @@ body {
   background-color: $color-add;
 }
 
-.body{
+.body {
   justify-content: flex-start;
 }
 
@@ -34,4 +34,8 @@ a {
 
 .colored-fist-letter {
   color: $color-light;
+}
+
+svg {
+  cursor: pointer;
 }

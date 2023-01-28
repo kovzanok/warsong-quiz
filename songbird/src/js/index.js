@@ -4,8 +4,11 @@ const answers = document.querySelector(".answers");
 const answersArray = [...answers.children];
 const randomNum = Math.floor(Math.random() * 6);
 let isGuessed = false;
+let isPlayingMain=false;
+const randomAudio = new Audio(unitsData[0][randomNum].audio);
+const questionPlayer = document.querySelector(".question__player");
 
-const answersCLickHandler = (e) => {
+const answersClickHandler = (e) => {
   const answerNumber = answersArray.indexOf(e.target);
   const targetMarker = e.target.firstElementChild;
 
@@ -24,13 +27,7 @@ const generateInfoCard = (number) => {
       <div class="info__name">${cardData.name}</div>
       <div class="info__name">${cardData.nameEng}</div>
       <div class="info__player">
-        <div class="player__control">
-          <object
-            type="image/svg+xml"
-            data="./src/img/play.svg"
-            class="play-object"
-          ></object>
-        </div>
+      <div class="player__control player__control_play"></div>
         <div class="player__playtime"></div>
         <div class="player__info"></div>
       </div>
@@ -41,9 +38,9 @@ const generateInfoCard = (number) => {
   </div>`;
 
   document.querySelector(".quiz__info").innerHTML = infoCard;
-
   const infoImage = document.querySelector(".info__image");
   infoImage.style.backgroundImage = `url(${cardData.image})`;
+  
 };
 
 const changeMarkerColor = (targetMarker, answerNumber) => {
@@ -57,4 +54,30 @@ const changeMarkerColor = (targetMarker, answerNumber) => {
   }
 };
 
-answers.addEventListener("click", answersCLickHandler);
+const playerClickHandler = (e) => {
+  
+  if (e.target.classList.contains("player__control")) {
+    const controlButton = e.target;
+    toggleSound(controlButton);
+  }
+  else if(e.target.classList.contains("player__playtime")){
+    
+  }
+};
+
+const toggleSound = (controlButton) => {
+  controlButton.classList.toggle("player__control_play");
+  controlButton.classList.toggle("player__control_pause");
+  if (isPlayingMain){
+    isPlayingMain=false;
+    randomAudio.pause();
+  }
+  else{
+    isPlayingMain=true;
+    randomAudio.play();
+  }
+};
+
+answers.addEventListener("click", answersClickHandler);
+
+questionPlayer.addEventListener("click", playerClickHandler);

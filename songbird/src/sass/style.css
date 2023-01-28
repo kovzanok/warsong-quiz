@@ -2,7 +2,7 @@ button, body {
   font-family: "Times New Roman", Times, serif;
 }
 
-button, a {
+.player__control, button, a {
   transition: all 0.3s ease;
 }
 
@@ -10,7 +10,8 @@ body {
   font-size: 2rem;
 }
 
-.question__player, .info__player {
+.question__player,
+.info__player {
   width: 90%;
   flex-basis: 60%;
   display: flex;
@@ -69,6 +70,10 @@ a {
 
 .colored-fist-letter {
   color: white;
+}
+
+svg {
+  cursor: pointer;
 }
 
 .navigation {
@@ -425,22 +430,23 @@ ul {
 }
 
 .player__control {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  border: 2px solid #1B389D;
-  border-radius: 50%;
-  cursor: pointer;
-}
-
-.play-object {
   width: 40px;
   height: 40px;
-  color: #1B389D;
+  cursor: pointer;
+}
+.player__control_play {
+  background-image: url("../img/play.svg");
+  background-position: center;
+  background-repeat: no-repeat;
+}
+.player__control_pause {
+  background-image: url("../img/pause.svg");
+  background-position: center;
+  background-repeat: no-repeat;
 }
 
 .player__playtime {
-  width: 90%;
+  width: 80%;
   height: 5px;
   border-radius: 2px;
   background-color: #1B389D;
@@ -580,7 +586,7 @@ ul {
 }
 
 .quiz__info {
-  min-height: 350px;
+  min-height: 325px;
 }
 
 .info__head {
