@@ -1,0 +1,30 @@
+html {
+  font-size: 10px;
+  color: $color-text;
+}
+
+body {
+  @font-face {
+    font-family: "Frizqt";
+    src: url("../../fonts/FRIZQT__.woff") format("woff");
+  }
+  @extend %font-primary;
+  font-family: "Frizqt", "Times New Roman", serif;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+h1 {
+  font-size: 3rem;
+}
+
+a {
+  text-decoration: none;
+  color: $color-text;
+  @extend %transition;
+}
+
+.colored-fist-letter {
+  color: $color-light;
+}

@@ -1,0 +1,19 @@
+{
+  "name": "kovzanok-jsfepreschool2022q4",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "style": "sass --watch src/sass/style.scss src/sass/style.css"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/rolling-scopes-school/kovzanok-JSFEPRESCHOOL2022Q4.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/rolling-scopes-school/kovzanok-JSFEPRESCHOOL2022Q4/issues"
+  },
+  "homepage": "https://github.com/rolling-scopes-school/kovzanok-JSFEPRESCHOOL2022Q4#readme"
+}

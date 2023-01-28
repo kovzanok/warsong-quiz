@@ -1,0 +1,29 @@
+.intro__wrapper{
+    display: flex;
+    flex-direction: row-reverse;
+    justify-content: space-around;
+    padding: 20px 0;
+}
+
+.intro__image{
+    max-width: 600px;
+    border-radius: 20px;
+}
+
+.intro__content{
+    max-width: 400px;
+}
+
+.intro__title{
+    text-align: center;
+}
+
+.intro__text{
+    font-size: 2rem;
+    text-align: justify;
+}
+
+.intro__buttons{
+    display: flex;
+    justify-content: center;
+}

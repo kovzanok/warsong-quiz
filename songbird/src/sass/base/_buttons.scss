@@ -1,0 +1,17 @@
+button{
+    cursor: pointer;
+    padding: 5px 10px;
+    border-radius: 5px;
+    font-size: 1.8rem;
+    @extend %font-primary;
+    @extend %transition;
+}
+
+.button_active{
+    background-color: $color-link-background;
+    color: $color-text;
+    &:hover{
+        color: $color-text-hover;
+        background-color: $color-link-background-hover;
+    }
+}
