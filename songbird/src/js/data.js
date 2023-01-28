@@ -1,51 +1,51 @@
 const unitsData = [
     [       
       {
-        id: 1,
+        
         name: 'Пехотинец',
         nameEng: 'Footman',
         description: 'Cильный и выносливый горожанин Азерота, который добровольно пришел в армию Альянса для защиты своих земель.',
-        image: '../src/img/unit_pic/humans/footman.jpg',
+        image: './src/img/unit_pic/humans/footman.jpg',
         audio: ''
       },
       {
-        id: 2,
+        
         name: 'Артас',
         nameEng: 'Arthas',
         description: `Сын короля Теренаса Менетила II, наследный принц Лордерона и рыцарь Серебряной Длани. Позже главный слуга Нер'Зула и его первый Рыцарь Смерти.`,
-        image: '../src/img/unit_pic/humans/arthas.png',
+        image: './src/img/unit_pic/humans/arthas.png',
         audio: ''
       },
       {
-        id: 3,
+        
         name: 'Волшебница',
         nameEng: 'Sorceress',
         description: `Маги-женщины, посылаемые магократами Даларана для слежения за опасными битвами магов. Они используют свои тайные знания для помощи Альянсу, когда человечество находится в опасности.`,
-        image: '../src/img/unit_pic/humans/sorceress.png',
+        image: './src/img/unit_pic/humans/sorceress.png',
         audio: ''
       },
       {
-        id: 4,
+        
         name: 'Работник',
         nameEng: 'Peasant',
-        description: 'Работников выбирали из трудолюбивых и крепких горожан, которые жили в различных королевствах Лордерона. Добывая золото и дерево для все более нуждающейся в этом армии, которая должна была дать отпор безжалостной Орде, они являются основой Альянса. ',
-        image: '../src/img/unit_pic/humans/peasant.jpg',
+        description: 'Работников выбирали из трудолюбивых и крепких горожан, которые жили в различных королевствах Лордерона. Добывая золото и дерево для армии, они являются основой Альянса. ',
+        image: './src/img/unit_pic/humans/peasant.jpg',
         audio: ''
       },
       {
-        id: 5,
+        
         name: 'Стрелок',
         nameEng: 'Rifleman',
-        description: 'Храбрые дворфийские стрелки верно защищают свое горное королевство Каз-Модан испокон веков. Однако они снова были вызваны Альянсом, дабы показать их силу и способности. Используя легендарные длинноствольные мушкеты, искусные стрелки могут поразить как наземного, так и воздушного врага.',
-        image: '../src/img/unit_pic/humans/rifleman.jpg',
+        description: 'Храбрые дворфийские стрелки верно защищают свое горное королевство Каз-Модан, однако они снова были вызваны Альянсом.',
+        image: './src/img/unit_pic/humans/rifleman.jpg',
         audio: ''
       },
       {
-        id: 6,
+        
         name: 'Мурадин',
         nameEng: 'Muradin',
         description: 'Герой Альянса, младший брат Короля Магни Бронзоборода и старший брат известного исследователя Бранна.',
-        image: '../src/img/unit_pic/humans/muradin.png',
+        image: './src/img/unit_pic/humans/muradin.png',
         audio: ''
       }
     ],

@@ -19,7 +19,6 @@ body {
 }
 
 .question__image, .info__image {
-  background-image: url("../img/unit_pic/humans/peasant.jpg");
   width: 150px;
   height: 150px;
   background-size: cover;
@@ -500,6 +499,10 @@ ul {
   margin-top: 0;
 }
 
+.question__image {
+  background-image: url("../img/fraction_logo/humans.png");
+}
+
 .question__name {
   position: relative;
   font-size: 3rem;
@@ -557,7 +560,7 @@ ul {
 .answer:hover {
   background-color: #1e37ac;
 }
-.answer:hover > .answer__marker {
+.answer:hover > .answer__marker_hover {
   background-color: #1e37ac;
 }
 
@@ -569,13 +572,24 @@ ul {
   border-radius: 50%;
   margin-right: 10px;
 }
+.answer__marker_red {
+  background-color: red;
+}
+.answer__marker_green {
+  background-color: green;
+}
 
 .quiz__info {
+  min-height: 350px;
+}
+
+.info__head {
   display: flex;
 }
 
 .info__description {
   padding-top: 10px;
+  text-align: justify;
 }
 
 .header {

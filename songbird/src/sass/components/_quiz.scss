@@ -23,6 +23,9 @@
   @extend %unit-image;
 }
 
+.question__image{
+  background-image: url("../img/fraction_logo/humans.png");
+}
 .question__body,.info__body{
     @extend %unit-body;
 }
@@ -60,7 +63,7 @@
   }
   &:hover {
     background-color: $color-link-background-active;
-    & > .answer__marker {
+    & > .answer__marker_hover {
       background-color: $color-link-background-active;
     }
   }
@@ -73,13 +76,24 @@
   width: 15px;
   border-radius: 50%;
   margin-right: 10px;
+  &_red{
+    background-color: red;
+  }
+  &_green{
+    background-color: green;
+  }
 }
 
 .quiz__info{
+  min-height: 350px;
+}
+
+.info__head{
   display: flex;
 }
 
 
 .info__description{
   padding-top: 10px;
+  text-align: justify;
 }
