@@ -1,0 +1,28 @@
+.question__player {
+  width: 90%;
+  flex-basis: 60%;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.player__control {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border: 2px solid $color-add;
+  border-radius: 50%;
+}
+
+.play-object {
+  width: 40px;
+  height: 40px;
+  color: $color-add;
+}
+
+.player__playtime {
+  width: 90%;
+  height: 5px;
+  border-radius: 2px;
+  background-color: $color-add;
+}

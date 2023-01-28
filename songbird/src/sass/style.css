@@ -393,6 +393,36 @@ section, main, footer, header, article {
 ul {
   list-style: none;
   padding-left: 0;
+  margin: 0;
+}
+
+.question__player {
+  width: 90%;
+  flex-basis: 60%;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.player__control {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border: 2px solid #1B389D;
+  border-radius: 50%;
+}
+
+.play-object {
+  width: 40px;
+  height: 40px;
+  color: #1B389D;
+}
+
+.player__playtime {
+  width: 90%;
+  height: 5px;
+  border-radius: 2px;
+  background-color: #1B389D;
 }
 
 .intro__wrapper {
@@ -427,24 +457,93 @@ ul {
 }
 
 .quiz__wrapper {
-  padding: 50px 0;
+  display: flex;
+  flex-direction: column;
+  padding: 10px 0;
+}
+.quiz__wrapper > * {
+  margin-top: 20px;
 }
 
-.quiz__question {
-  display: flex;
-  justify-content: space-between;
+.quiz__block {
   background-color: #152F4B;
   border-radius: 20px;
   padding: 30px;
 }
 
+.quiz__question {
+  display: flex;
+  justify-content: flex-start;
+  margin-top: 0;
+}
+
 .question__image {
   background-image: url("../img/unit_pic/humans/footman.jpg");
-  width: 200px;
-  height: 200px;
+  width: 150px;
+  height: 150px;
   background-size: cover;
   background-position: center;
   border-radius: 20px;
+}
+
+.question__body {
+  padding-left: 50px;
+  flex-basis: 80%;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+.question__name {
+  position: relative;
+  font-size: 3rem;
+}
+.question__name::after {
+  position: absolute;
+  content: "";
+  height: 1px;
+  width: 100%;
+  background-color: #1B389D;
+  top: 40px;
+  left: -25px;
+}
+
+.quiz__answers {
+  background-color: #152F4B;
+  border-radius: 10px;
+}
+
+.answers {
+  display: flex;
+  flex-direction: column;
+}
+
+.answer {
+  cursor: pointer;
+  position: relative;
+  padding: 10px;
+  border: 1px solid #17120e;
+}
+.answer:first-child {
+  border-radius: 10px 10px 0 0;
+}
+.answer:last-child {
+  border-radius: 0 0 10px 10px;
+}
+.answer:hover {
+  background-color: #1e37ac;
+}
+.answer:hover > .answer__marker {
+  background-color: #1e37ac;
+}
+
+.answer__marker {
+  display: inline-block;
+  background-color: #000039;
+  height: 15px;
+  width: 15px;
+  border-radius: 50%;
+  margin-right: 10px;
 }
 
 .header {
@@ -456,6 +555,7 @@ ul {
   justify-content: space-between;
   align-items: center;
   flex-wrap: wrap;
+  padding-bottom: 20px;
 }
 
 .header__logo {
@@ -499,6 +599,7 @@ ul {
 .footer__wrapper {
   display: flex;
   justify-content: center;
+  padding: 30px 0;
 }
 
 .footer__links {
@@ -508,6 +609,15 @@ ul {
 
 .link-element {
   padding: 5px 10px;
+}
+
+.layout-2-column {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+}
+.layout-2-column > * {
+  flex-basis: 48%;
 }
 
 /*# sourceMappingURL=style.css.map */

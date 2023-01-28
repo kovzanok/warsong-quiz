@@ -12,7 +12,7 @@
     <header class="header">
       <div class="wrapper header__wrapper">
         <div class="header__logo">
-          <img class="logo-image" src="./src/img/logo.png" />
+          <img class="logo-image" src="" />
         </div>
         <div class="header__score">
           <span class="score">Score: 0</span>
@@ -24,6 +24,7 @@
             <li class="question">Нежить</li>
             <li class="question">Ночные эльфы</li>
             <li class="question">Орда</li>
+            <li class="question">Нейтральные герои</li>
           </ul>
         </div>
       </div>
@@ -31,28 +32,51 @@
     <main class="main">
       <section class="quiz">
         <div class="wrapper quiz__wrapper">
-          <div class="quiz__question">
+          <div class="quiz__question quiz__block">
             <div class="question__image"></div>
             <div class="question__body">
               <div class="question__name">Пехотинец</div>
-              <div class="question__sound"></div>
+              <div class="question__player">
+                <div class="player__control">
+                  <object
+                    type="image/svg+xml"
+                    data="./src/img/play.svg"
+                    class="play-object"
+                  ></object>
+                </div>
+                <div class="player__playtime"></div>
+              </div>
             </div>
           </div>
           <div class="layout-2-column">
             <div class="quiz__answers">
               <ul class="answers">
-                <li class="answer">Пехотинец</li>
-                <li class="answer">Артес</li>
-                <li class="answer">Чародейка</li>
-                <li class="answer">Крестьянин</li>
-                <li class="answer">Стрелок</li>
-                <li class="answer">Мурадин</li>
+                <li class="answer">
+                  <span class="answer__marker"></span>Пехотинец
+                </li>
+                <li class="answer">
+                  <span class="answer__marker"></span>Артес
+                </li>
+                <li class="answer">
+                  <span class="answer__marker"></span>Чародейка
+                </li>
+                <li class="answer">
+                  <span class="answer__marker"></span>Крестьянин
+                </li>
+                <li class="answer">
+                  <span class="answer__marker"></span>Стрелок
+                </li>
+                <li class="answer">
+                  <span class="answer__marker"></span>Мурадин
+                </li>
               </ul>
             </div>
-            <div class="quiz__info"></div>
+            <div class="quiz__info quiz__block"></div>
           </div>
+          <button class="button quiz__button button_active">
+            Следующий уровень
+          </button>
         </div>
-        <button class="quiz__button">Следующий уровень</button>
       </section>
     </main>
   </body>

@@ -1,12 +1,15 @@
 //Abstract
 @import './abstract/constants';
 @import './abstract/placeholders';
+@import './abstract/mixins';
+
 //Base
 @import './base/base';
 @import './base/navigation';
 @import './base/logo';
 @import './base/buttons';
 @import './base/normalize';
+@import './base/player';
 
 //Components
 @import './components/intro';
@@ -17,4 +20,5 @@
 @import './layouts/wrapper';
 @import './layouts/main';
 @import './layouts/footer';
+@import './layouts/colums'
 
