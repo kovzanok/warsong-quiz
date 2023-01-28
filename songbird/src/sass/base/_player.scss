@@ -3,26 +3,30 @@
   @extend %player;
 }
 
-
-
 .player__control {
   width: 40px;
   height: 40px;
   cursor: pointer;
   @extend %transition;
-  &_play{
-    @include player-button($url:'../img/play.svg');
+  &_play {
+    @include player-button($url: "../img/play.svg");
   }
-  &_pause{
-    @include player-button($url:'../img/pause.svg');
-    
+  &_pause {
+    @include player-button($url: "../img/pause.svg");
   }
 }
 
 .player__playtime {
+  position: relative;
   width: 80%;
   height: 5px;
   border-radius: 2px;
   background-color: $color-add;
   cursor: pointer;
+  &_played {
+    position: absolute;
+    z-index: 4;
+    width: 0;
+    background-color: $color-link-background;
+  }
 }

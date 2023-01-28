@@ -446,11 +446,18 @@ ul {
 }
 
 .player__playtime {
+  position: relative;
   width: 80%;
   height: 5px;
   border-radius: 2px;
   background-color: #1B389D;
   cursor: pointer;
+}
+.player__playtime_played {
+  position: absolute;
+  z-index: 4;
+  width: 0;
+  background-color: #000039;
 }
 
 .intro__wrapper {
