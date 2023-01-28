@@ -67,7 +67,7 @@ const playerClickHandler = (e) => {
     const controlButton = e.target;
     togglePlay(controlButton);
   } else if (e.target.classList.contains("player__playtime")) {
-    const playerTimeline = e.target;
+    const playerTimeline = timeBar;
     rewindSong(e, playerTimeline);
   }
 };
@@ -85,6 +85,7 @@ const togglePlay = (controlButton) => {
 };
 
 const rewindSong = (e, playerTimeline) => {
+  console.log(e.clientX);
   const partOfDuration = (e.clientX - 487) / playerTimeline.clientWidth;
   randomAudio.currentTime = partOfDuration * randomAudio.duration;
   setNewAudioTime();
