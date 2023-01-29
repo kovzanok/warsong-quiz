@@ -572,7 +572,7 @@ ul {
 }
 
 .question__image {
-  background-image: url("../img/fraction_logo/humans.png");
+  background-image: url("../img/question.jpg");
 }
 
 @media (max-width: 600px) {

@@ -1,7 +1,6 @@
 import unitsData from "./data.js";
 
-const answers = document.querySelector(".answers");
-const answersArray = [...answers.children];
+
 const randomNum = Math.floor(Math.random() * 6);
 let isGuessed = false;
 
@@ -14,9 +13,8 @@ const quizButton = document.querySelector(".quiz__button");
 const mainTimelinePlayed = document.querySelector(".player__playtime_played");
 const mainPlayerButton = document.querySelector(".player__control");
 
-const rightAlarm=new Audio('./src/sound/right.mp3');
-const wrongAlarm=new Audio('./src/sound/wrong.mp3');
-
+const rightAlarm = new Audio("./src/sound/right.mp3");
+const wrongAlarm = new Audio("./src/sound/wrong.mp3");
 
 const makeNextLvlButtonActive = () => {
   quizButton.classList.remove("button_nonactive");
@@ -153,6 +151,28 @@ const updateTimeBar = (audio, timelinePlayed) => {
   setTimeout(updateTimeBar, 100, audio, timelinePlayed);
   setNewAudioTime(audio, timelinePlayed);
 };
+
+const createAnswerList = () => {
+  const answers = document.createElement("ul");
+  answers.classList.add("answers");
+
+  for (let i = 0; i < unitsData[0].length; i++) {
+    const answer = document.createElement("li");
+    answer.classList.add("answer");
+    const marker = document.createElement("span");
+    marker.classList.add("answer__marker"); 
+    marker.classList.add("answer__marker_hover");
+    answer.append(marker);
+    answer.insertAdjacentText("beforeend", unitsData[0][i].name);
+    answers.append(answer);
+  }
+  document.querySelector('.quiz__answers').append(answers);
+};
+
+
+createAnswerList();
+const answers = document.querySelector(".answers");
+const answersArray = [...answers.children];
 
 answers.addEventListener("click", answersClickHandler);
 questionPlayer.addEventListener("click", playerClickHandler(randomAudio));
