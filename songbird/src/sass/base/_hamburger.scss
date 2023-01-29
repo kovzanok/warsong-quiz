@@ -11,27 +11,50 @@
 .hamburger{
     display: none;
     position: relative;
-    width: 31px;
+    width: 40px;
     height: 25px;
+    margin-left: 60px;
     
     @include media-mobile{
         display: inline-block;
+        position: relative;
+        z-index: 4;
     }
+    
     &::before{
+        @extend %transition;
         @extend %hamburger-line;
-        background-color:$color-light;
+        
         top:0;
         left: 0;
     }
     &::after{
+        @extend %transition;
         @extend %hamburger-line;
         bottom:0;
         left: 0;
     }
+
+    &_active{
+        >.hamburger__line{
+            transform: scale(0) translate(0, 0)
+        }
+        &::before{
+            top: 50%;
+            transform: rotate(-45deg) translate(0px,-50%)
+        }
+        &::after{
+            top: 50%;
+            transform: rotate(45deg) translate(0px,-50%)
+        }
+    }
 }
 
 .hamburger__line{
+    background-color:$color-light;
     @extend %hamburger-line;
+    @extend %transition;
     top: calc(50% - 1.5px);
     left:0;
+
 }

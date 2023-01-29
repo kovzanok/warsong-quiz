@@ -42,3 +42,7 @@
 @mixin media-mobilesmall{
     @media (max-width: $mobile-small-width){@content;}
 }
+
+@mixin media-tabletsmall{
+    @media (max-width: $tablet-navigation-breakpoint){@content;}
+}

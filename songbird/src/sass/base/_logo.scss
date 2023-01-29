@@ -1,4 +1,8 @@
 .logo-image{
     width: 170px;
+    @include media-mobile{
+        position: relative;
+        z-index: 4;
+    }
     
 }

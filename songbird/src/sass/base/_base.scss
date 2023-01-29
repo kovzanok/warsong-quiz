@@ -16,13 +16,15 @@ body {
   flex-direction: column;
   justify-content: space-between;
   background-color: $color-add;
-  @include media-tablet{
-    justify-content: none;
-  }
+  
+  
 }
 
 .body {
   justify-content: flex-start;
+  &_lock{
+    overflow: hidden;
+  }
 }
 
 h1 {

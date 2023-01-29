@@ -7,15 +7,32 @@
   align-items: center;
   flex-wrap: wrap;
   padding-bottom: 20px;
+  position: relative;
+  z-index: 4;
+  background-color: $color-primary;
+  @include media-tabletsmall {
+    justify-content: center;
+  }
+  @include media-mobile {
+    justify-content: space-between;
+  }
 }
 
 .header__logo {
-  
 }
 
-.header__nav{
-  @include media-mobile{
-    display: none;
+.header__nav {
+  @include media-mobile {
+    &::before {
+      content: "";
+      position: absolute;
+      z-index: 3;
+      height: 100%;
+      background-color: $color-primary;
+      width: 100%;
+      top: 0;
+      right: 0;
+    }
   }
 }
 
@@ -41,8 +58,8 @@
   &_active {
     background-color: $color-link-background-active;
   }
-  @include media-tablet{
-    &:last-child{
+  @include media-tablet {
+    &:last-child {
       flex-basis: 100%;
     }
   }
