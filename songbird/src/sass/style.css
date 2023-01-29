@@ -636,18 +636,25 @@ ul {
 .questions {
   display: flex;
   justify-content: space-between;
+  flex-wrap: wrap;
 }
 
 .question {
   background-color: #000039;
-  padding: 10px 50px;
+  margin-top: 10px;
+  padding: 10px 25px;
   border: 1px solid #17120e;
   border-radius: 5px;
+  align-self: center;
   text-align: center;
-  vertical-align: middle;
 }
 .question_active {
   background-color: #1e37ac;
+}
+@media (max-width: 768px) {
+  .question:last-child {
+    flex-basis: 100%;
+  }
 }
 
 .wrapper {
