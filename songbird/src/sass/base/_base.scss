@@ -16,6 +16,9 @@ body {
   flex-direction: column;
   justify-content: space-between;
   background-color: $color-add;
+  @include media-tablet{
+    justify-content: none;
+  }
 }
 
 .body {

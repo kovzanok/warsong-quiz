@@ -3,6 +3,10 @@
     flex-direction: row-reverse;
     justify-content: space-between;
     padding: 20px 0;
+    @include media-tablet{
+        flex-direction: column-reverse;
+        align-items: center;
+    }
 }
 
 .intro__image{
@@ -11,11 +15,17 @@
     height: 100%;
     align-self: center;
     border-radius: 20px;
+    @include media-tablet{
+        width: 100%;
+    }
 }
 
 .intro__content{
     max-width: 400px;
     width: 35%;
+    @include media-tablet{
+        width: 100%;
+    }
 }
 
 .intro__title{
@@ -24,7 +34,11 @@
 
 .intro__text{
     font-size: 2rem;
-    text-align: justify;
+    text-align: left;
+    @include media-tablet{
+        text-align: center;
+    }
+
 }
 
 .intro__buttons{
@@ -33,5 +47,8 @@
     padding-top: 15%;
     @include media-tablet{
         padding: 0;
+    }
+    @include media-mobile{
+        padding-top: 50px;
     }
 }

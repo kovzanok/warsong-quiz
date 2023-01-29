@@ -54,6 +54,11 @@ body {
     src: url("../../fonts/FRIZQT__.woff") format("woff");
   }
 }
+@media (max-width: 768px) {
+  body {
+    justify-content: none;
+  }
+}
 
 .body {
   justify-content: flex-start;
@@ -480,11 +485,53 @@ ul {
   background-color: #000039;
 }
 
+.hamburger__line, .hamburger::after, .hamburger::before {
+  content: "";
+  position: absolute;
+  width: 100%;
+  height: 3px;
+  display: inline-block;
+  background-color: #ffdf0e;
+  border-radius: 5px;
+}
+
+.hamburger {
+  display: none;
+  position: relative;
+  width: 31px;
+  height: 25px;
+}
+@media (max-width: 426px) {
+  .hamburger {
+    display: inline-block;
+  }
+}
+.hamburger::before {
+  background-color: white;
+  top: 0;
+  left: 0;
+}
+.hamburger::after {
+  bottom: 0;
+  left: 0;
+}
+
+.hamburger__line {
+  top: calc(50% - 1.5px);
+  left: 0;
+}
+
 .intro__wrapper {
   display: flex;
   flex-direction: row-reverse;
   justify-content: space-between;
   padding: 20px 0;
+}
+@media (max-width: 768px) {
+  .intro__wrapper {
+    flex-direction: column-reverse;
+    align-items: center;
+  }
 }
 
 .intro__image {
@@ -494,10 +541,20 @@ ul {
   align-self: center;
   border-radius: 20px;
 }
+@media (max-width: 768px) {
+  .intro__image {
+    width: 100%;
+  }
+}
 
 .intro__content {
   max-width: 400px;
   width: 35%;
+}
+@media (max-width: 768px) {
+  .intro__content {
+    width: 100%;
+  }
 }
 
 .intro__title {
@@ -506,7 +563,12 @@ ul {
 
 .intro__text {
   font-size: 2rem;
-  text-align: justify;
+  text-align: left;
+}
+@media (max-width: 768px) {
+  .intro__text {
+    text-align: center;
+  }
 }
 
 .intro__buttons {
@@ -517,6 +579,11 @@ ul {
 @media (max-width: 768px) {
   .intro__buttons {
     padding: 0;
+  }
+}
+@media (max-width: 426px) {
+  .intro__buttons {
+    padding-top: 50px;
   }
 }
 
@@ -736,6 +803,12 @@ ul {
   align-items: center;
   flex-wrap: wrap;
   padding-bottom: 20px;
+}
+
+@media (max-width: 426px) {
+  .header__nav {
+    display: none;
+  }
 }
 
 .header__questions {
