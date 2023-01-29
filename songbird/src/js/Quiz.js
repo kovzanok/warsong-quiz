@@ -4,9 +4,11 @@ const answers = document.querySelector(".answers");
 const answersArray = [...answers.children];
 const randomNum = Math.floor(Math.random() * 6);
 let isGuessed = false;
-let isPlayingMain = false;
+
 const randomAudio = new Audio(unitsData[0][randomNum].audio);
 const questionPlayer = document.querySelector(".question__player");
+let infoPlayer;
+let unitAudio;
 const quizButton = document.querySelector(".quiz__button");
 
 const mainTimelinePlayed = document.querySelector(".player__playtime_played");
@@ -37,7 +39,7 @@ const generateInfoCard = (number) => {
       <div class="info__name">${cardData.nameEng}</div>
       <div class="info__player">
       <div class="player__control player__control_play"></div>
-        <div class="player__playtime"></div>
+        <div class="player__playtime"><div class="player__playtime player__playtime_played"></div></div>
         <div class="player__info"></div>
       </div>
     </div>
@@ -49,6 +51,24 @@ const generateInfoCard = (number) => {
   document.querySelector(".quiz__info").innerHTML = infoCard;
   const infoImage = document.querySelector(".info__image");
   infoImage.style.backgroundImage = `url(${cardData.image})`;
+  infoPlayer = document.querySelector(".info__player");
+
+  if (unitAudio) unitAudio.pause();
+  unitAudio = new Audio(cardData.audio);
+
+  infoPlayer.addEventListener("click", playerClickHandler(unitAudio));
+  unitAudio.onended = () => {
+    infoPlayer
+      .querySelector(".player__control")
+      .classList.add("player__control_play");
+    infoPlayer
+      .querySelector(".player__control")
+      .classList.remove("player__control_pause");
+  };
+  updateTimeBar(
+    unitAudio,
+    infoPlayer.querySelector(".player__playtime_played")
+  );
 };
 
 const changeMarkerColor = (targetMarker, answerNumber) => {
@@ -69,10 +89,7 @@ const displayRightAnswer = () => {
   rightName.textContent = unitsData[0][randomNum].name;
   rightImage.style.backgroundImage = `url(${unitsData[0][randomNum].image})`;
   makeNextLvlButtonActive();
-  togglePlay(
-    document.querySelector(".question__player .player__control"),
-    randomAudio
-  );
+  pauseMainAudio();
 };
 
 const playerClickHandler = (audio) => {
@@ -94,6 +111,12 @@ const playerClickHandler = (audio) => {
   };
 };
 
+const pauseMainAudio = () => {
+  randomAudio.pause();
+  mainPlayerButton.classList.add("player__control_play");
+  mainPlayerButton.classList.remove("player__control_pause");
+};
+
 const togglePlay = (controlButton, audio) => {
   if (!audio.paused) {
     audio.pause();
@@ -107,8 +130,9 @@ const togglePlay = (controlButton, audio) => {
 };
 
 const rewindSong = (e, playerTimeline, playerTimelinePlayed, audio) => {
-  console.log(e.clientX);
-  const partOfDuration = (e.clientX - 487) / playerTimeline.clientWidth;
+  const partOfDuration =
+    (e.clientX - e.target.getBoundingClientRect().left) /
+    playerTimeline.clientWidth;
   audio.currentTime = partOfDuration * audio.duration;
   setNewAudioTime(audio, playerTimelinePlayed);
 };
