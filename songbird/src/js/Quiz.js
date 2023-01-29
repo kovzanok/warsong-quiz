@@ -14,6 +14,10 @@ const quizButton = document.querySelector(".quiz__button");
 const mainTimelinePlayed = document.querySelector(".player__playtime_played");
 const mainPlayerButton = document.querySelector(".player__control");
 
+const rightAlarm=new Audio('./src/sound/right.mp3');
+const wrongAlarm=new Audio('./src/sound/wrong.mp3');
+
+
 const makeNextLvlButtonActive = () => {
   quizButton.classList.remove("button_nonactive");
   quizButton.classList.add("button_active");
@@ -77,7 +81,9 @@ const changeMarkerColor = (targetMarker, answerNumber) => {
     isGuessed = true;
     targetMarker.classList.remove("answer__marker_hover");
     displayRightAnswer();
+    rightAlarm.play();
   } else {
+    wrongAlarm.play();
     targetMarker.classList.add("answer__marker_red");
     targetMarker.classList.remove("answer__marker_hover");
   }
