@@ -7,14 +7,15 @@ let isGuessed = false;
 let isPlayingMain = false;
 const randomAudio = new Audio(unitsData[0][randomNum].audio);
 const questionPlayer = document.querySelector(".question__player");
-const timeBar = document.querySelector(".player__playtime");
-const timeBarPlayed = document.querySelector(".player__playtime_played");
-const quizButton=document.querySelector('.quiz__button');
+const quizButton = document.querySelector(".quiz__button");
 
-const makeNextLvlButtonActive = () =>{
-  quizButton.classList.remove('button_nonactive');
-  quizButton.classList.add('button_active');
-}
+const mainTimelinePlayed = document.querySelector(".player__playtime_played");
+const mainPlayerButton = document.querySelector(".player__control");
+
+const makeNextLvlButtonActive = () => {
+  quizButton.classList.remove("button_nonactive");
+  quizButton.classList.add("button_active");
+};
 
 const answersClickHandler = (e) => {
   const answerNumber = answersArray.indexOf(e.target);
@@ -56,72 +57,79 @@ const changeMarkerColor = (targetMarker, answerNumber) => {
     isGuessed = true;
     targetMarker.classList.remove("answer__marker_hover");
     displayRightAnswer();
-    
   } else {
     targetMarker.classList.add("answer__marker_red");
     targetMarker.classList.remove("answer__marker_hover");
   }
 };
 
-const displayRightAnswer=()=>{
-  const rightName=document.querySelector('.question__name');
-  const rightImage=document.querySelector('.question__image');
-  rightName.textContent=unitsData[0][randomNum].name;
-  rightImage.style.backgroundImage=`url(${unitsData[0][randomNum].image})`;
+const displayRightAnswer = () => {
+  const rightName = document.querySelector(".question__name");
+  const rightImage = document.querySelector(".question__image");
+  rightName.textContent = unitsData[0][randomNum].name;
+  rightImage.style.backgroundImage = `url(${unitsData[0][randomNum].image})`;
   makeNextLvlButtonActive();
-  togglePlay(document.querySelector('.question__player .player__control'));
-  isPlayingMain=false;
+  togglePlay(
+    document.querySelector(".question__player .player__control"),
+    randomAudio
+  );
 };
 
-const playerClickHandler = (e) => {
-  if (e.target.classList.contains("player__control")) {
-    const controlButton = e.target;
-    togglePlay(controlButton);
-  } else if (e.target.classList.contains("player__playtime")) {
-    const playerTimeline = timeBar;
-    rewindSong(e, playerTimeline);
-  }
+const playerClickHandler = (audio) => {
+  return function (e) {
+    if (e.target.classList.contains("player__control")) {
+      const controlButton = e.target;
+      togglePlay(controlButton, audio);
+    } else if (e.target.classList.contains("player__playtime")) {
+      const playerTimeline = e.target.parentNode.classList.contains(
+        "player__playtime"
+      )
+        ? e.target.parentNode
+        : e.target;
+
+      const playerTimelinePlayed = playerTimeline.firstElementChild;
+
+      rewindSong(e, playerTimeline, playerTimelinePlayed, audio);
+    }
+  };
 };
 
-const togglePlay = (controlButton) => {
-  controlButton.classList.toggle("player__control_play");
-  controlButton.classList.toggle("player__control_pause");
-  if (isPlayingMain) {
-    isPlayingMain = false;
-    randomAudio.pause();
+const togglePlay = (controlButton, audio) => {
+  if (!audio.paused) {
+    audio.pause();
+    controlButton.classList.add("player__control_play");
+    controlButton.classList.remove("player__control_pause");
   } else {
-    isPlayingMain = true;
-    randomAudio.play();
+    audio.play();
+    controlButton.classList.remove("player__control_play");
+    controlButton.classList.add("player__control_pause");
   }
 };
 
-const rewindSong = (e, playerTimeline) => {
+const rewindSong = (e, playerTimeline, playerTimelinePlayed, audio) => {
   console.log(e.clientX);
   const partOfDuration = (e.clientX - 487) / playerTimeline.clientWidth;
-  randomAudio.currentTime = partOfDuration * randomAudio.duration;
-  setNewAudioTime();
+  audio.currentTime = partOfDuration * audio.duration;
+  setNewAudioTime(audio, playerTimelinePlayed);
 };
 
-const setNewAudioTime=()=>{
-  timeBarPlayed.style.width=`${Math.round(randomAudio.currentTime*100/randomAudio.duration)}%`;
-   
-}
+const setNewAudioTime = (audio, playerTimelinePlayed) => {
+  playerTimelinePlayed.style.width = `${Math.round(
+    (audio.currentTime * 100) / audio.duration
+  )}%`;
+};
 
-const updateTimeBar=()=>{
-  setTimeout(updateTimeBar,100);
-  setNewAudioTime();
-}
+const updateTimeBar = (audio, timelinePlayed) => {
+  setTimeout(updateTimeBar, 100, audio, timelinePlayed);
+  setNewAudioTime(audio, timelinePlayed);
+};
 
 answers.addEventListener("click", answersClickHandler);
-questionPlayer.addEventListener("click", playerClickHandler);
-randomAudio.onended=(e)=>{
-  togglePlay(document.querySelector('.question__player .player__control'));
-  isPlayingMain=false;
-  
+questionPlayer.addEventListener("click", playerClickHandler(randomAudio));
+
+randomAudio.onended = () => {
+  mainPlayerButton.classList.add("player__control_play");
+  mainPlayerButton.classList.remove("player__control_pause");
 };
 
-
-updateTimeBar();
-
-
-//добавить второй отдельный рабочий плеер и посмотреть,что еще нужжно в соответсвии с ТЗ
+updateTimeBar(randomAudio, mainTimelinePlayed);

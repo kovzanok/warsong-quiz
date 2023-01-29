@@ -144,6 +144,7 @@ svg {
 }
 .button_active {
   background-color: #000039;
+  color: #ffdf0e;
 }
 .button_active:hover {
   color: #d5d8b0;
@@ -152,6 +153,7 @@ svg {
 .button_nonactive {
   background-color: #152F4B;
   cursor: default;
+  color: grey;
 }
 
 /*! normalize.css v8.0.1 | MIT License | github.com/necolas/normalize.css */

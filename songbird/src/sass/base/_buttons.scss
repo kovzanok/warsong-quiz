@@ -8,6 +8,7 @@
   color: $color-text;
   &_active {
     background-color: $color-link-background;
+    color: $color-text;
     
     &:hover {
       color: $color-text-hover;
@@ -17,6 +18,7 @@
   &_nonactive{
     background-color: $color-primary;
     cursor:default;
+    color: grey;
   }
 }
 
