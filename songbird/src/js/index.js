@@ -103,5 +103,13 @@ const updateTimeBar=()=>{
 
 answers.addEventListener("click", answersClickHandler);
 questionPlayer.addEventListener("click", playerClickHandler);
+randomAudio.onended=(e)=>{
+  togglePlay(document.querySelector('.question__player .player__control'));
+  isPlayingMain=false;
+  
+};
 
 updateTimeBar();
+
+
+//добавить второй отдельный рабочий плеер и посмотреть,что еще нужжно в соответсвии с ТЗ
