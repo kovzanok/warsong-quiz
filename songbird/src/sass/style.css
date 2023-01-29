@@ -1,8 +1,8 @@
-button, body {
+.button, body {
   font-family: "Times New Roman", Times, serif;
 }
 
-.player__control, button, a {
+.player__control, .button, a {
   transition: all 0.3s ease;
 }
 
@@ -102,20 +102,22 @@ svg {
   width: 170px;
 }
 
-button {
+.button {
   cursor: pointer;
   padding: 10px 15px;
   border-radius: 5px;
   font-size: 2.8rem;
+  color: #ffdf0e;
 }
-
 .button_active {
   background-color: #000039;
-  color: #ffdf0e;
 }
 .button_active:hover {
   color: #d5d8b0;
   background-color: #1e37ac;
+}
+.button_nonactive {
+  background-color: #152F4B;
 }
 
 /*! normalize.css v8.0.1 | MIT License | github.com/necolas/normalize.css */
