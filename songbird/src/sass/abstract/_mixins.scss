@@ -46,3 +46,7 @@
 @mixin media-tabletsmall{
     @media (max-width: $tablet-navigation-breakpoint){@content;}
 }
+
+@mixin media-tablet-single-column{
+    @media (max-width: $tablet-quiz-breakpoint){@content;}
+}

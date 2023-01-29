@@ -11,7 +11,7 @@
   background-color: $color-primary;
   border-radius: 20px;
   padding: 30px;
-  @include media-mobile{
+  @include media-tablet-single-column{
     padding: 20px;
   }
 }
@@ -20,7 +20,7 @@
   display: flex;
   justify-content: flex-start;
   margin-top: 0;
-  @include media-mobile{
+  @include media-tablet-single-column{
     flex-direction: column;
     text-align: center;
   }
@@ -39,7 +39,7 @@
 .question__body,.info__body{
     @extend %unit-body;
     
-    @include media-mobile{
+    @include media-tablet-single-column{
       padding: 0;
       >.question__player{
         padding-top: 25px;
@@ -58,7 +58,7 @@
 }
 .question__name{
     @include unit-name($font-size: 3rem,$top:40px,$left:-25px);
-    @include media-mobile{
+    @include media-tablet-single-column{
       @include unit-name($font-size: 3rem,$top:40px,$left:0px);
       padding-top: 5px;
     }
@@ -78,7 +78,7 @@
 }
 
 .wrapper__answers{
-  @include media-mobile{
+  @include media-tablet-single-column{
     >.quiz__info{
       margin-top: 10px;
       margin-left: 10px;
@@ -135,7 +135,7 @@
   @include media-tablet{
     min-height: 467px;
   }
-  @include media-mobile{
+  @include media-tablet-single-column{
     min-height: 100%;
     display: flex;
     flex-direction: column;

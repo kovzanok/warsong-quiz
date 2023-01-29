@@ -645,7 +645,7 @@ ul {
   border-radius: 20px;
   padding: 30px;
 }
-@media (max-width: 426px) {
+@media (max-width: 600px) {
   .quiz__block {
     padding: 20px;
   }
@@ -656,7 +656,7 @@ ul {
   justify-content: flex-start;
   margin-top: 0;
 }
-@media (max-width: 426px) {
+@media (max-width: 600px) {
   .quiz__question {
     flex-direction: column;
     text-align: center;
@@ -673,7 +673,7 @@ ul {
   background-image: url("../img/fraction_logo/humans.png");
 }
 
-@media (max-width: 426px) {
+@media (max-width: 600px) {
   .question__body, .info__body {
     padding: 0;
   }
@@ -705,7 +705,7 @@ ul {
   top: 40px;
   left: -25px;
 }
-@media (max-width: 426px) {
+@media (max-width: 600px) {
   .question__name {
     position: relative;
     font-size: 3rem;
@@ -757,7 +757,7 @@ ul {
   border-radius: 10px;
 }
 
-@media (max-width: 426px) {
+@media (max-width: 600px) {
   .wrapper__answers > .quiz__info {
     margin-top: 10px;
     margin-left: 10px;
@@ -815,7 +815,7 @@ ul {
     min-height: 467px;
   }
 }
-@media (max-width: 426px) {
+@media (max-width: 600px) {
   .quiz__info {
     min-height: 100%;
     display: flex;
@@ -950,7 +950,7 @@ ul {
 .layout-2-column > * {
   flex-basis: 48%;
 }
-@media (max-width: 426px) {
+@media (max-width: 600px) {
   .layout-2-column {
     display: flex;
     flex-wrap: wrap;
