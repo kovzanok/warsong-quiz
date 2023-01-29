@@ -1,39 +1,42 @@
 import unitsData from "./data.js";
 
-
-const randomNum = Math.floor(Math.random() * 6);
 let isGuessed = false;
+let mainSound;
+let roundNumber = 0;
 
-const randomAudio = new Audio(unitsData[0][randomNum].audio);
 const questionPlayer = document.querySelector(".question__player");
 let infoPlayer;
 let unitAudio;
-const quizButton = document.querySelector(".quiz__button");
 
-const mainTimelinePlayed = document.querySelector(".player__playtime_played");
+let mainTimelinePlayed = document.querySelector(".player__playtime_played");
 const mainPlayerButton = document.querySelector(".player__control");
 
 const rightAlarm = new Audio("./src/sound/right.mp3");
 const wrongAlarm = new Audio("./src/sound/wrong.mp3");
+
+let mainAudioHandler;
+let infoAudioHandler;
 
 const makeNextLvlButtonActive = () => {
   quizButton.classList.remove("button_nonactive");
   quizButton.classList.add("button_active");
 };
 
-const answersClickHandler = (e) => {
-  const answerNumber = answersArray.indexOf(e.target);
-  const targetMarker = e.target.firstElementChild;
+const answersClickHandler = (quizNumber, answersArray, randomNum) => {
+  return (e) => {
+    const answerNumber = answersArray.indexOf(e.target);
+    const targetMarker = e.target.firstElementChild;
 
-  generateInfoCard(answerNumber);
+    generateInfoCard(answerNumber, quizNumber);
 
-  if (!isGuessed) {
-    changeMarkerColor(targetMarker, answerNumber);
-  }
+    if (!isGuessed) {
+      changeMarkerColor(targetMarker, answerNumber, randomNum, quizNumber);
+    }
+  };
 };
 
-const generateInfoCard = (number) => {
-  const cardData = unitsData[0][number];
+const generateInfoCard = (number, quizNumber) => {
+  const cardData = unitsData[quizNumber][number];
   const infoCard = `<div class="info__head">
     <div class="info__image"></div>
     <div class="info__body">
@@ -55,10 +58,14 @@ const generateInfoCard = (number) => {
   infoImage.style.backgroundImage = `url(${cardData.image})`;
   infoPlayer = document.querySelector(".info__player");
 
-  if (unitAudio) unitAudio.pause();
+  if (unitAudio) {
+    unitAudio.pause();
+    infoPlayer.removeEventListener("click", infoAudioHandler);
+  }
   unitAudio = new Audio(cardData.audio);
+  infoAudioHandler = playerClickHandler(unitAudio);
 
-  infoPlayer.addEventListener("click", playerClickHandler(unitAudio));
+  infoPlayer.addEventListener("click", infoAudioHandler);
   unitAudio.onended = () => {
     infoPlayer
       .querySelector(".player__control")
@@ -73,12 +80,17 @@ const generateInfoCard = (number) => {
   );
 };
 
-const changeMarkerColor = (targetMarker, answerNumber) => {
+const changeMarkerColor = (
+  targetMarker,
+  answerNumber,
+  randomNum,
+  quizNumber
+) => {
   if (randomNum === answerNumber) {
     targetMarker.classList.add("answer__marker_green");
     isGuessed = true;
     targetMarker.classList.remove("answer__marker_hover");
-    displayRightAnswer();
+    displayRightAnswer(randomNum, quizNumber);
     rightAlarm.play();
   } else {
     wrongAlarm.play();
@@ -87,17 +99,19 @@ const changeMarkerColor = (targetMarker, answerNumber) => {
   }
 };
 
-const displayRightAnswer = () => {
+const displayRightAnswer = (randomNum, quizNumber) => {
   const rightName = document.querySelector(".question__name");
   const rightImage = document.querySelector(".question__image");
-  rightName.textContent = unitsData[0][randomNum].name;
-  rightImage.style.backgroundImage = `url(${unitsData[0][randomNum].image})`;
+  rightName.textContent = unitsData[quizNumber][randomNum].name;
+  rightImage.style.backgroundImage = `url(${unitsData[quizNumber][randomNum].image})`;
   makeNextLvlButtonActive();
   pauseMainAudio();
 };
 
 const playerClickHandler = (audio) => {
   return function (e) {
+    console.log("в хендлере");
+    console.log(audio);
     if (e.target.classList.contains("player__control")) {
       const controlButton = e.target;
       togglePlay(controlButton, audio);
@@ -116,7 +130,7 @@ const playerClickHandler = (audio) => {
 };
 
 const pauseMainAudio = () => {
-  randomAudio.pause();
+  mainSound.pause();
   mainPlayerButton.classList.add("player__control_play");
   mainPlayerButton.classList.remove("player__control_pause");
 };
@@ -152,34 +166,85 @@ const updateTimeBar = (audio, timelinePlayed) => {
   setNewAudioTime(audio, timelinePlayed);
 };
 
-const createAnswerList = () => {
+const createAnswerList = (number) => {
+  if (document.querySelector(".answers"))
+    document.querySelector(".answers").remove();
   const answers = document.createElement("ul");
   answers.classList.add("answers");
 
-  for (let i = 0; i < unitsData[0].length; i++) {
+  for (let i = 0; i < unitsData[number].length - 1; i++) {
     const answer = document.createElement("li");
     answer.classList.add("answer");
     const marker = document.createElement("span");
-    marker.classList.add("answer__marker"); 
+    marker.classList.add("answer__marker");
     marker.classList.add("answer__marker_hover");
     answer.append(marker);
-    answer.insertAdjacentText("beforeend", unitsData[0][i].name);
+    answer.insertAdjacentText("beforeend", unitsData[number][i].name);
     answers.append(answer);
   }
-  document.querySelector('.quiz__answers').append(answers);
+  document.querySelector(".quiz__answers").append(answers);
 };
 
-
-createAnswerList();
-const answers = document.querySelector(".answers");
-const answersArray = [...answers.children];
-
-answers.addEventListener("click", answersClickHandler);
-questionPlayer.addEventListener("click", playerClickHandler(randomAudio));
-
-randomAudio.onended = () => {
-  mainPlayerButton.classList.add("player__control_play");
-  mainPlayerButton.classList.remove("player__control_pause");
+const createFractionLogo = (quizNumber) => {
+  document.querySelector(".question__image").style.backgroundImage = `url(${
+    unitsData[quizNumber][unitsData[quizNumber].length - 1].fractionLogo
+  })`;
 };
 
-updateTimeBar(randomAudio, mainTimelinePlayed);
+const createQuiz = (quizNumber) => {
+  const randomNum = Math.floor(Math.random() * 6);
+  const randomAudio = new Audio(unitsData[quizNumber][randomNum].audio);
+
+  mainSound = randomAudio;
+  createFractionLogo(quizNumber);
+  createAnswerList(quizNumber);
+  const answers = document.querySelector(".answers");
+  const answersArray = [...answers.children];
+  answers.addEventListener(
+    "click",
+    answersClickHandler(quizNumber, answersArray, randomNum)
+  );
+};
+
+const resetQuiz = () => {
+  document.querySelector(".question__name").textContent = "*****";
+  document.querySelector(".quiz__info").textContent =
+    "Прослушайте плеер и выберите персонажа из списка.";
+  quizButton.classList.add("button_nonactive");
+  quizButton.classList.remove("button_active");
+  isGuessed = false;
+
+  questionPlayer.removeEventListener("click", mainAudioHandler);
+  document.querySelector(".player__playtime_played").remove();
+  const newTimeLine = document.createElement("div");
+  newTimeLine.classList.add("player__playtime");
+  newTimeLine.classList.add("player__playtime_played");
+  document.querySelector(".player__playtime").append(newTimeLine);
+  mainTimelinePlayed = newTimeLine;
+};
+
+const playQuiz = (quizNumber) => {
+  createQuiz(quizNumber);
+  mainAudioHandler = playerClickHandler(mainSound);
+
+  questionPlayer.addEventListener("click", mainAudioHandler);
+  mainSound.onended = () => {
+    mainPlayerButton.classList.add("player__control_play");
+    mainPlayerButton.classList.remove("player__control_pause");
+  };
+  updateTimeBar(mainSound, mainTimelinePlayed);
+  console.log(mainSound);
+};
+
+const quizButtonClickHandler = (e) => {
+  if (e.target.classList.contains("button_active")) {
+    resetQuiz();
+    playQuiz(++roundNumber);
+  }
+};
+
+playQuiz(roundNumber);
+
+const quizButton = document.querySelector(".quiz__button");
+
+quizButton.addEventListener("click", quizButtonClickHandler);

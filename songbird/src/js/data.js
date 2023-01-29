@@ -46,6 +46,9 @@ const unitsData = [
       image: "./src/img/unit_pic/training/rexxar.jpg",
       audio: "./src/sound/training/rexxar.mp3",
     },
+    {
+      fractionLogo: "./src/img/fraction_logo/question.jpg",
+    }
   ],
   [
     {
@@ -94,6 +97,9 @@ const unitsData = [
       image: "./src/img/unit_pic/humans/muradin.png",
       audio: "./src/sound/humans/muradin.mp3",
     },
+    {
+      fractionLogo: "./src/img/fraction_logo/humans.png",
+    }
   ],
 ];
 

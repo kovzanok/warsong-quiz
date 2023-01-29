@@ -571,10 +571,6 @@ ul {
   }
 }
 
-.question__image {
-  background-image: url("../img/question.jpg");
-}
-
 @media (max-width: 600px) {
   .question__body {
     padding: 0;
