@@ -1,0 +1,29 @@
+.question__image {
+  @extend %unit-image;
+  @include media-tablet {
+    align-self: center;
+  }
+}
+
+.question__image {
+  background-image: url("../img/fraction_logo/humans.png");
+}
+
+.question__body {
+  @extend %unit-body;
+
+  @include media-tablet-single-column {
+    padding: 0;
+    > .question__player {
+      padding-top: 25px;
+    }
+  }
+}
+
+.question__name {
+  @include unit-name($font-size: 3rem, $top: 40px, $left: -25px);
+  @include media-tablet-single-column {
+    @include unit-name($font-size: 3rem, $top: 40px, $left: 0px);
+    padding-top: 5px;
+  }
+}

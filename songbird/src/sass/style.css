@@ -19,7 +19,7 @@ body {
   justify-content: space-between;
 }
 
-.question__image, .info__image {
+.info__image, .question__image {
   width: 150px;
   height: 150px;
   background-size: cover;
@@ -27,7 +27,7 @@ body {
   border-radius: 20px;
 }
 
-.question__body, .info__body {
+.info__body, .question__body {
   padding-left: 50px;
   flex-basis: 80%;
   display: flex;
@@ -565,6 +565,173 @@ ul {
   left: 0;
 }
 
+@media (max-width: 768px) {
+  .question__image {
+    align-self: center;
+  }
+}
+
+.question__image {
+  background-image: url("../img/fraction_logo/humans.png");
+}
+
+@media (max-width: 600px) {
+  .question__body {
+    padding: 0;
+  }
+  .question__body > .question__player {
+    padding-top: 25px;
+  }
+}
+
+.question__name {
+  position: relative;
+  font-size: 3rem;
+}
+.question__name::after {
+  position: absolute;
+  content: "";
+  height: 1px;
+  width: 100%;
+  background-color: #1B389D;
+  top: 40px;
+  left: -25px;
+}
+@media (max-width: 600px) {
+  .question__name {
+    position: relative;
+    font-size: 3rem;
+    padding-top: 5px;
+  }
+  .question__name::after {
+    position: absolute;
+    content: "";
+    height: 1px;
+    width: 100%;
+    background-color: #1B389D;
+    top: 40px;
+    left: 0px;
+  }
+}
+
+@media (max-width: 768px) {
+  .info__image {
+    align-self: center;
+  }
+}
+
+@media (max-width: 600px) {
+  .info__body {
+    padding: 0;
+  }
+  .info__body > .question__player {
+    padding-top: 25px;
+  }
+}
+@media (max-width: 768px) {
+  .info__body {
+    flex-basis: 50%;
+    padding-left: 20px;
+  }
+  .info__body > * {
+    padding: 5px 0;
+  }
+}
+
+.info__name {
+  position: relative;
+  font-size: 2rem;
+}
+.info__name::after {
+  position: absolute;
+  content: "";
+  height: 1px;
+  width: 100%;
+  background-color: #1B389D;
+  top: 25px;
+  left: -15px;
+}
+@media (max-width: 768px) {
+  .info__name {
+    text-align: center;
+    position: relative;
+    font-size: 2rem;
+  }
+  .info__name::after {
+    position: absolute;
+    content: "";
+    height: 1px;
+    width: 100%;
+    background-color: #1B389D;
+    top: 30px;
+    left: 0px;
+  }
+}
+
+.info__head {
+  display: flex;
+}
+@media (max-width: 768px) {
+  .info__head {
+    flex-direction: column;
+  }
+}
+
+.info__description {
+  padding-top: 10px;
+  text-align: left;
+}
+
+@media (max-width: 600px) {
+  .wrapper__answers > .quiz__info {
+    margin-top: 10px;
+    margin-left: 10px;
+  }
+}
+
+.answers {
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+}
+
+.answer {
+  cursor: pointer;
+  position: relative;
+  padding: 10px;
+  flex-grow: 1;
+  display: flex;
+  align-items: center;
+  border: 1px solid #17120e;
+}
+.answer:first-child {
+  border-radius: 10px 10px 0 0;
+}
+.answer:last-child {
+  border-radius: 0 0 10px 10px;
+}
+.answer:hover {
+  background-color: #1e37ac;
+}
+.answer:hover > .answer__marker_hover {
+  background-color: #1e37ac;
+}
+
+.answer__marker {
+  display: inline-block;
+  background-color: #000039;
+  height: 15px;
+  width: 15px;
+  border-radius: 50%;
+  margin-right: 10px;
+}
+.answer__marker_red {
+  background-color: red;
+}
+.answer__marker_green {
+  background-color: green;
+}
+
 .intro__wrapper {
   display: flex;
   flex-direction: row-reverse;
@@ -663,148 +830,9 @@ ul {
   }
 }
 
-@media (max-width: 768px) {
-  .question__image, .info__image {
-    align-self: center;
-  }
-}
-
-.question__image {
-  background-image: url("../img/fraction_logo/humans.png");
-}
-
-@media (max-width: 600px) {
-  .question__body, .info__body {
-    padding: 0;
-  }
-  .question__body > .question__player, .info__body > .question__player {
-    padding-top: 25px;
-  }
-}
-
-@media (max-width: 768px) {
-  .info__body {
-    flex-basis: 50%;
-    padding-left: 20px;
-  }
-  .info__body > * {
-    padding: 5px 0;
-  }
-}
-
-.question__name {
-  position: relative;
-  font-size: 3rem;
-}
-.question__name::after {
-  position: absolute;
-  content: "";
-  height: 1px;
-  width: 100%;
-  background-color: #1B389D;
-  top: 40px;
-  left: -25px;
-}
-@media (max-width: 600px) {
-  .question__name {
-    position: relative;
-    font-size: 3rem;
-    padding-top: 5px;
-  }
-  .question__name::after {
-    position: absolute;
-    content: "";
-    height: 1px;
-    width: 100%;
-    background-color: #1B389D;
-    top: 40px;
-    left: 0px;
-  }
-}
-
-.info__name {
-  position: relative;
-  font-size: 2rem;
-}
-.info__name::after {
-  position: absolute;
-  content: "";
-  height: 1px;
-  width: 100%;
-  background-color: #1B389D;
-  top: 25px;
-  left: -15px;
-}
-@media (max-width: 768px) {
-  .info__name {
-    text-align: center;
-    position: relative;
-    font-size: 2rem;
-  }
-  .info__name::after {
-    position: absolute;
-    content: "";
-    height: 1px;
-    width: 100%;
-    background-color: #1B389D;
-    top: 30px;
-    left: 0px;
-  }
-}
-
 .quiz__answers {
   background-color: #152F4B;
   border-radius: 10px;
-}
-
-@media (max-width: 600px) {
-  .wrapper__answers > .quiz__info {
-    margin-top: 10px;
-    margin-left: 10px;
-  }
-}
-
-.answers {
-  display: flex;
-  flex-direction: column;
-  height: 100%;
-}
-
-.answer {
-  cursor: pointer;
-  position: relative;
-  padding: 10px;
-  flex-grow: 1;
-  display: flex;
-  align-items: center;
-  border: 1px solid #17120e;
-}
-.answer:first-child {
-  border-radius: 10px 10px 0 0;
-}
-.answer:last-child {
-  border-radius: 0 0 10px 10px;
-}
-.answer:hover {
-  background-color: #1e37ac;
-}
-.answer:hover > .answer__marker_hover {
-  background-color: #1e37ac;
-}
-
-.answer__marker {
-  display: inline-block;
-  background-color: #000039;
-  height: 15px;
-  width: 15px;
-  border-radius: 50%;
-  margin-right: 10px;
-}
-.answer__marker_red {
-  background-color: red;
-}
-.answer__marker_green {
-  background-color: green;
 }
 
 .quiz__info {
@@ -821,20 +849,6 @@ ul {
     display: flex;
     flex-direction: column;
   }
-}
-
-.info__head {
-  display: flex;
-}
-@media (max-width: 768px) {
-  .info__head {
-    flex-direction: column;
-  }
-}
-
-.info__description {
-  padding-top: 10px;
-  text-align: left;
 }
 
 .header {
