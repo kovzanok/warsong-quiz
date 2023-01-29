@@ -1,6 +1,9 @@
 .question__player,
 .info__player {
   @extend %player;
+  @include media-mobile{
+    align-self: center;
+  }
 }
 
 .player__control {
@@ -13,6 +16,9 @@
   }
   &_pause {
     @include player-button($url: "../img/pause.svg");
+  }
+  @include media-mobile{
+    padding-left: 5px;
   }
 }
 

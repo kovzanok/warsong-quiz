@@ -1,3 +1,6 @@
 .layout-2-column{
     @include columns($width:48%);
+    @include media-mobile{
+        @include columns($width:100%);
+    }
 }
