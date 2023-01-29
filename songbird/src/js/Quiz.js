@@ -8,6 +8,8 @@ const questionPlayer = document.querySelector(".question__player");
 let infoPlayer;
 let unitAudio;
 
+const questionList = document.querySelectorAll(".question");
+
 let mainTimelinePlayed = document.querySelector(".player__playtime_played");
 const mainPlayerButton = document.querySelector(".player__control");
 
@@ -110,8 +112,6 @@ const displayRightAnswer = (randomNum, quizNumber) => {
 
 const playerClickHandler = (audio) => {
   return function (e) {
-    console.log("в хендлере");
-    console.log(audio);
     if (e.target.classList.contains("player__control")) {
       const controlButton = e.target;
       togglePlay(controlButton, audio);
@@ -206,7 +206,8 @@ const createQuiz = (quizNumber) => {
   );
 };
 
-const resetQuiz = () => {
+const resetQuiz = (quizNumber) => {
+  questionList[quizNumber].classList.remove("question_active");
   document.querySelector(".question__name").textContent = "*****";
   document.querySelector(".quiz__info").textContent =
     "Прослушайте плеер и выберите персонажа из списка.";
@@ -224,6 +225,7 @@ const resetQuiz = () => {
 };
 
 const playQuiz = (quizNumber) => {
+  questionList[quizNumber].classList.add("question_active");
   createQuiz(quizNumber);
   mainAudioHandler = playerClickHandler(mainSound);
 
@@ -233,12 +235,11 @@ const playQuiz = (quizNumber) => {
     mainPlayerButton.classList.remove("player__control_pause");
   };
   updateTimeBar(mainSound, mainTimelinePlayed);
-  console.log(mainSound);
 };
 
 const quizButtonClickHandler = (e) => {
   if (e.target.classList.contains("button_active")) {
-    resetQuiz();
+    resetQuiz(roundNumber);
     playQuiz(++roundNumber);
   }
 };
