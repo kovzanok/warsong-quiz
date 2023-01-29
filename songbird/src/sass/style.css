@@ -118,6 +118,7 @@ svg {
 }
 .button_nonactive {
   background-color: #152F4B;
+  cursor: default;
 }
 
 /*! normalize.css v8.0.1 | MIT License | github.com/necolas/normalize.css */
@@ -471,11 +472,15 @@ ul {
 
 .intro__image {
   max-width: 700px;
+  width: 60%;
+  height: 100%;
+  align-self: center;
   border-radius: 20px;
 }
 
 .intro__content {
   max-width: 400px;
+  width: 35%;
 }
 
 .intro__title {
@@ -490,7 +495,12 @@ ul {
 .intro__buttons {
   display: flex;
   justify-content: center;
-  padding-top: 60px;
+  padding-top: 15%;
+}
+@media (max-width: 768px) {
+  .intro__buttons {
+    padding: 0;
+  }
 }
 
 .quiz__wrapper {
@@ -619,10 +629,6 @@ ul {
   padding-bottom: 20px;
 }
 
-.header__logo {
-  padding-left: 90px;
-}
-
 .header__questions {
   flex-basis: 100%;
 }
@@ -647,6 +653,11 @@ ul {
 .wrapper {
   max-width: 1200px;
   margin: auto;
+}
+@media (max-width: 1200px) {
+  .wrapper {
+    padding: 20px 40px;
+  }
 }
 
 .main {

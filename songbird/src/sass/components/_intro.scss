@@ -7,11 +7,15 @@
 
 .intro__image{
     max-width: 700px;
+    width: 60%;
+    height: 100%;
+    align-self: center;
     border-radius: 20px;
 }
 
 .intro__content{
     max-width: 400px;
+    width: 35%;
 }
 
 .intro__title{
@@ -26,5 +30,8 @@
 .intro__buttons{
     display: flex;
     justify-content: center;
-    padding-top: 60px;
+    padding-top: 15%;
+    @include media-tablet{
+        padding: 0;
+    }
 }
