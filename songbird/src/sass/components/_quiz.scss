@@ -28,7 +28,7 @@
 
 .question__image,.info__image {
   @extend %unit-image;
-  @include media-mobile{
+  @include media-tablet{
     align-self: center;
   }
 }
@@ -38,6 +38,7 @@
 }
 .question__body,.info__body{
     @extend %unit-body;
+    
     @include media-mobile{
       padding: 0;
       >.question__player{
@@ -46,13 +47,14 @@
     }
 }
 .info__body{
-  @include media-mobile{
+  @include media-tablet{
     flex-basis: 50%;
+    padding-left: 20px;
     >*{
       padding: 5px 0;
     }
-
   }
+  
 }
 .question__name{
     @include unit-name($font-size: 3rem,$top:40px,$left:-25px);
@@ -64,7 +66,7 @@
 
 .info__name{
   @include unit-name($font-size: 2rem,$top:25px,$left:-15px);
-  @include media-mobile{
+  @include media-tablet{
     text-align: center;
     @include unit-name($font-size: 2rem,$top:30px,$left:0px);
   }
@@ -76,9 +78,13 @@
 }
 
 .wrapper__answers{
-  >.quiz__info{
-    margin-top: 10px;
+  @include media-mobile{
+    >.quiz__info{
+      margin-top: 10px;
+      margin-left: 10px;
+    }
   }
+  
 }
 
 .answers {
@@ -126,6 +132,9 @@
 
 .quiz__info{
   min-height: 325px;
+  @include media-tablet{
+    min-height: 467px;
+  }
   @include media-mobile{
     min-height: 100%;
     display: flex;
@@ -135,7 +144,7 @@
 
 .info__head{
   display: flex;
-  @include media-mobile{
+  @include media-tablet{
     flex-direction: column;
   }
 }

@@ -17,6 +17,9 @@
   &_pause {
     @include player-button($url: "../img/pause.svg");
   }
+  @include media-tablet{
+    margin-right: 5px;
+  }
   @include media-mobile{
     padding-left: 5px;
   }
