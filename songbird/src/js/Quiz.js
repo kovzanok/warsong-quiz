@@ -56,7 +56,7 @@ const changeMarkerColor = (targetMarker, answerNumber) => {
     isGuessed = true;
     targetMarker.classList.remove("answer__marker_hover");
     displayRightAnswer();
-    makeNextLvlButtonActive();
+    
   } else {
     targetMarker.classList.add("answer__marker_red");
     targetMarker.classList.remove("answer__marker_hover");
@@ -68,6 +68,9 @@ const displayRightAnswer=()=>{
   const rightImage=document.querySelector('.question__image');
   rightName.textContent=unitsData[0][randomNum].name;
   rightImage.style.backgroundImage=`url(${unitsData[0][randomNum].image})`;
+  makeNextLvlButtonActive();
+  togglePlay(document.querySelector('.question__player .player__control'));
+  isPlayingMain=false;
 };
 
 const playerClickHandler = (e) => {
