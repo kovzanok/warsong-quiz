@@ -4,35 +4,17 @@ import { Round } from "./Round.js";
 let roundNumber = 0;
 let score = 0;
 
-const resetRound = (quizNumber) => {
-  points = 5;
-  questionList[quizNumber].classList.remove("round_active");
-  document.querySelector(".question__name").textContent = "*****";
-  document.querySelector(".quiz__info").textContent =
-    "Прослушайте плеер и выберите персонажа из списка.";
-
-  quizButton.classList.add("button_nonactive");
-  quizButton.classList.remove("button_active");
-
-  isGuessed = false;
-
-  if (unitAudio) {
-    unitAudio.pause();
+const quizButtonClickHandler = function () {
+  if (this.classList.contains("button_active")) {
+    score = round.getScore();
+    round.resetRound();
+    roundNumber++;
+    round = new Round(roundNumber, unitsData, score);
+    round.playRound();
   }
-
-  //questionPlayer.removeEventListener("click", mainPlayer.playerClickHandler);
-  document.querySelector(".player__playtime_played").remove();
-  const newTimeLine = document.createElement("div");
-  newTimeLine.classList.add("player__playtime");
-  newTimeLine.classList.add("player__playtime_played");
-  document.querySelector(".player__playtime").append(newTimeLine);
-  mainTimelinePlayed = newTimeLine;
 };
 
-const quizButtonClickHandler = (e) => {};
-
 let round = new Round(roundNumber, unitsData, score);
-
 round.playRound();
 
 const quizButton = document.querySelector(".quiz__button");

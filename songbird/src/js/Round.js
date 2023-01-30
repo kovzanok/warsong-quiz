@@ -8,7 +8,7 @@ export class Round {
     this.rightAlarm = new Audio("./src/sound/right.mp3");
     this.wrongAlarm = new Audio("./src/sound/wrong.mp3");
     this.points = 5;
-    this.score = 0;
+    this.score = score;
   }
 
   generateRandomQuestion() {
@@ -94,14 +94,30 @@ export class Round {
   }
 
   resetRound() {
+    this.roundList[this.roundNumber].classList.remove("round_active");
     document.querySelector(".question__name").textContent = "*****";
     document.querySelector(".quiz__info").textContent =
       "Прослушайте плеер и выберите персонажа из списка.";
+    this.nextRoundButton.classList.add("button_nonactive");
+    this.nextRoundButton.classList.remove("button_active");
+
+    this.unitAudio.pause();
+    this.questionPlayer.removeEventListener(
+      "click",
+      this.mainPlayer.playerClickHandler
+    );
+
+    this.mainPlayer.playerTimelinePlayed.remove();
+    const newPlayerTimelinePlayed = document.createElement("div");
+    newPlayerTimelinePlayed.classList.add("player__playtime");
+    newPlayerTimelinePlayed.classList.add("player__playtime_played");
+
+    this.mainPlayer.playerTimeline.append(newPlayerTimelinePlayed);
   }
 
   playRound() {
-    const roundList = document.querySelectorAll(".round");
-    roundList[this.roundNumber].classList.add("round_active");
+    this.roundList = document.querySelectorAll(".round");
+    this.roundList[this.roundNumber].classList.add("round_active");
     this.createRound();
   }
 
@@ -110,15 +126,18 @@ export class Round {
     this.createFractionLogo();
     this.createAnswerList();
 
-    const questionPlayer = document.querySelector(".question__player");
+    this.questionPlayer = document.querySelector(".question__player");
     this.questionPlayerControl = document.querySelector(".player__control");
-    const mainPlayer = new Player(this.questionAudio);
+    this.mainPlayer = new Player(this.questionAudio);
 
-    questionPlayer.addEventListener("click", mainPlayer.playerClickHandler);
+    this.questionPlayer.addEventListener(
+      "click",
+      this.mainPlayer.playerClickHandler
+    );
 
     this.questionAudio.onended = () => {
-      questionPlayerControl.classList.add("player__control_play");
-      questionPlayerControl.classList.remove("player__control_pause");
+      this.questionPlayerControl.classList.add("player__control_play");
+      this.questionPlayerControl.classList.remove("player__control_pause");
     };
 
     const answers = document.querySelector(".answers");
@@ -184,8 +203,12 @@ export class Round {
   }
 
   makeNextRoundButtonActive() {
-    const nextRoundButton = document.querySelector(".quiz__button");
-    nextRoundButton.classList.remove("button_nonactive");
-    nextRoundButton.classList.add("button_active");
+    this.nextRoundButton = document.querySelector(".quiz__button");
+    this.nextRoundButton.classList.remove("button_nonactive");
+    this.nextRoundButton.classList.add("button_active");
+  }
+
+  getScore() {
+    return this.score;
   }
 }

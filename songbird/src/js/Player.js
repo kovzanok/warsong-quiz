@@ -15,14 +15,15 @@ export class Player {
   }
 
   playerClickHandler = (e) => {
-
+    this.playerTimeline =
+      e.target.parentNode.querySelector(".player__playtime");
     this.playerTimelinePlayed = e.target.parentNode.querySelector(
       ".player__playtime_played"
     );
-    
+
     if (e.target.classList.contains("player__control")) {
       this.controlButton = e.target;
-      console.log();
+
       this.togglePlay();
     } else if (e.target.classList.contains("player__playtime")) {
       this.playerTimeline = e.target.parentNode.classList.contains(
