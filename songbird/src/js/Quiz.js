@@ -214,7 +214,10 @@ const resetQuiz = (quizNumber) => {
   quizButton.classList.add("button_nonactive");
   quizButton.classList.remove("button_active");
   isGuessed = false;
-
+  if (unitAudio) {
+    unitAudio.pause();
+    infoPlayer.removeEventListener("click", infoAudioHandler);
+  }
   questionPlayer.removeEventListener("click", mainAudioHandler);
   document.querySelector(".player__playtime_played").remove();
   const newTimeLine = document.createElement("div");

@@ -113,7 +113,7 @@ const unitsData = [
     {
       name: "Анубарак",
       nameEng: "Anub'arak",
-      description: `Представитель древней расы нерубианцев - гигантских паукоподобных существ, издревле обитавших в Нортренде. За долгие столетия, проведенные пауками на материке, они основали свое собственное королевство - город-государство Азол-Неруб.`,
+      description: `Представитель древней расы нерубианцев, издревле обитавших в Нортренде. За долгие столетия, проведенные пауками на материке, они основали свое собственное королевство - город-государство Азол-Неруб.`,
       image: "./src/img/unit_pic/undead/anub.jpg",
       audio: "./src/sound/undead/anub.mp3",
     },
@@ -136,7 +136,7 @@ const unitsData = [
       name: "Повелитель ужаса",
       nameEng: "Dreadlord",
       description:
-        "Невероятно сильные демоны, которые владеют силой тьмы и мощью психического подчинения. Эти коварные и зловредные существа однажды служили демону Кил'джедену как самые доверенные лейтенанты в его войске.",
+        "Невероятно сильные демоны, которые однажды служили демону Кил'джедену как самые доверенные лейтенанты в его войске.",
       image: "./src/img/unit_pic/undead/dreadlord.jpg",
       audio: "./src/sound/undead/dreadlord.mp3",
     },
@@ -171,7 +171,7 @@ const unitsData = [
     {
       name: "Друид-ворон",
       nameEng: "Druid of the Talon",
-      description: `Эти замкнутые друиды поклоняются тотему ворона. Их наипервейшая роль в сообществе - разведка и сбор информации. Они умеют превращаться в воронов и летать над полем битвы, чтобы разведывать и доставлять приказы удаленным группам войск. `,
+      description: `Эти друиды поклоняются тотему ворона. Их роль в сообществе - разведка и сбор информации. Они умеют превращаться в воронов, чтобы разведывать и доставлять приказы удаленным группам войск. `,
       image: "./src/img/unit_pic/elves/talon.jpg",
       audio: "./src/sound/elves/talon.mp3",
     },
@@ -201,6 +201,108 @@ const unitsData = [
     },
     {
       fractionLogo: "./src/img/fraction_logo/elves.png",
+    },
+  ],
+  [
+    {
+      name: "Рубака",
+      nameEng: "Grunt",
+      description:
+        "Это первая и последняя линия обороны Орды. Эти могучие воины вооружены массивными боевыми топорами и демонстрируют собой всю дикость и коварство их расы.",
+      image: "./src/img/unit_pic/horde/grunt.jpg",
+      audio: "./src/sound/horde/grunt.mp3",
+    },
+    {
+      name: "Кэрн Кровавый Рог",
+      nameEng: "Cairne Bloodhoof",
+      description: `Мудрый вождь минотавров во времена III войны. Объединился с ордой Тралла.`,
+      image: "./src/img/unit_pic/horde/cairne.jpg",
+      audio: "./src/sound/horde/cairne.mp3",
+    },
+    {
+      name: "Раб",
+      nameEng: "Peon",
+      description: `Звание раба означает самое низкое положение среди орков. Обладая также самыми низкими навыками среди орков, эти собаки выполняют всю черную орочью работу, такую как сбор древесины и добыча золота.`,
+      image: "./src/img/unit_pic/horde/peon.jpg",
+      audio: "./src/sound/horde/peon.mp3",
+    },
+    {
+      name: "Гром Задира",
+      nameEng: "Grommash Hellscream",
+      description:
+        "Вождь орочьего клана Боевых Топоров. Известен своей вспыльчивостью и громким голосом, что особенно сильно выражается, когда он кричит. Из-за этого Гром и получил своё прозвище— «Адский Крик».",
+      image: "./src/img/unit_pic/horde/grom.jpg",
+      audio: "./src/sound/horde/grom.mp3",
+    },
+    {
+      name: "Шаман",
+      nameEng: "Shaman",
+      description:
+        "Под предводительством Тралла ораки снова открыли в себе способности к шаманизмую В попытках избавить Орду от демочнической порчи Тралл запретил использование черной магии и некромантии.",
+      image: "./src/img/unit_pic/horde/shaman.jpg",
+      audio: "./src/sound/horde/shaman.mp3",
+    },
+    {
+      name: "Охотник за головами",
+      nameEng: "Troll Headhunter",
+      description:
+        "Это бесправные тролли-дикари северного Лордерона снова обязались предоставить их услуги Орде. Эти коварные воины с детства обучаются охоте, слежению и ловле самых опасных диких зверей с помощью ловушек.",
+      image: "./src/img/unit_pic/horde/troll.jpg",
+      audio: "./src/sound/horde/troll.mp3",
+    },
+    {
+      fractionLogo: "./src/img/fraction_logo/horde.jpg",
+    },
+  ],
+  [
+    {
+      name: "Пандарен Пивовар",
+      nameEng: "Pandaren Brewmaster",
+      description:
+        "Родом из скрытной империи Пандарен, могущественные пивовары путешествуют по миру в поисках экзотического эля и лучших спиртных напитков.",
+      image: "./src/img/unit_pic/neutral/panda.jpg",
+      audio: "./src/sound/neutral/panda.mp3",
+    },
+    {
+      name: "Разрушитель",
+      nameEng: "Pit Lord",
+      description: `Грозный демонический воин, один вид которого повергает противников в ужас. Один из из лордов Пылающего Легиона.`,
+      image: "./src/img/unit_pic/neutral/pit.jpg",
+      audio: "./src/sound/neutral/pit.mp3",
+    },
+    {
+      name: "Алхимик",
+      nameEng: "Alchemist",
+      description: `В этой необычной паре хозяин гоблин едет на спине своего раба-огра. Несмотря на то, что огр прошел ряд химических «обработок», огр иногда демонстрирует признаки независимости и даже откровенного неповиновения.`,
+      image: "./src/img/unit_pic/neutral/alch.jpg",
+      audio: "./src/sound/neutral/alch.mp3",
+    },
+    {
+      name: "Механик",
+      nameEng: "Tinker",
+      description:
+        "Гоблин-механик, достигший небывалого мастерства в своем ремесле.",
+      image: "./src/img/unit_pic/neutral/tinker.jpg",
+      audio: "./src/sound/neutral/tinker.mp3",
+    },
+    {
+      name: "Королева змей",
+      nameEng: "Naga Sea Witch",
+      description:
+        "Грозная колдунья из народа наг.",
+      image: "./src/img/unit_pic/neutral/naga.jpg",
+      audio: "./src/sound/neutral/naga.mp3",
+    },
+    {
+      name: "Повелитель огня",
+      nameEng: "Firelord",
+      description:
+        "Повелители Огня — разумные элементали, более сложные и могущественные существа, чем лишенные разума водные элементали, которых маги Альянса призывают к битве.",
+      image: "./src/img/unit_pic/neutral/fire.jpg",
+      audio: "./src/sound/neutral/fire.mp3",
+    },
+    {
+      fractionLogo: "./src/img/fraction_logo/neutral.jpg",
     },
   ],
 ];
