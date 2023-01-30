@@ -3,6 +3,8 @@ import unitsData from "./data.js";
 let isGuessed = false;
 let mainSound;
 let roundNumber = 0;
+let score=0;
+let points=5;
 
 const questionPlayer = document.querySelector(".question__player");
 let infoPlayer;
@@ -94,8 +96,11 @@ const changeMarkerColor = (
     targetMarker.classList.remove("answer__marker_hover");
     displayRightAnswer(randomNum, quizNumber);
     rightAlarm.play();
+    score+=points;
+    document.querySelector('.score').textContent=`Score: ${score}`;
   } else {
     wrongAlarm.play();
+    --points;
     targetMarker.classList.add("answer__marker_red");
     targetMarker.classList.remove("answer__marker_hover");
   }
@@ -192,6 +197,8 @@ const createFractionLogo = (quizNumber) => {
 };
 
 const createQuiz = (quizNumber) => {
+
+  
   const randomNum = Math.floor(Math.random() * 6);
   const randomAudio = new Audio(unitsData[quizNumber][randomNum].audio);
 
@@ -207,6 +214,7 @@ const createQuiz = (quizNumber) => {
 };
 
 const resetQuiz = (quizNumber) => {
+  points=5;
   questionList[quizNumber].classList.remove("question_active");
   document.querySelector(".question__name").textContent = "*****";
   document.querySelector(".quiz__info").textContent =
