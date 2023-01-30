@@ -60,6 +60,12 @@ const generateInfoCard = (number, quizNumber) => {
   document.querySelector(".quiz__info").innerHTML = infoCard;
   const infoImage = document.querySelector(".info__image");
   infoImage.style.backgroundImage = `url(${cardData.image})`;
+
+  generateInfoPlayer(cardData);
+  
+};
+
+const generateInfoPlayer=(cardData)=>{
   infoPlayer = document.querySelector(".info__player");
 
   if (unitAudio) {
@@ -82,7 +88,8 @@ const generateInfoCard = (number, quizNumber) => {
     unitAudio,
     infoPlayer.querySelector(".player__playtime_played")
   );
-};
+}
+
 
 const changeMarkerColor = (
   targetMarker,
