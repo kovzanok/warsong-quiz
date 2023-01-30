@@ -1,21 +1,21 @@
 export class Round {
-  constructor(quizNumber, unitsData, answerNumber = undefined) {
-    this.quizNumber = quizNumber;
+  constructor(roundNumber, unitsData, answerNumber = undefined) {
+    this.roundNumber = roundNumber;
     this.unitsData = unitsData;
     this.answerNumber = answerNumber;
   }
 
   generateRandomQuestion() {
     const randomNum = Math.floor(Math.random() * 6);
-    const randomAudio = new Audio(this.unitsData[this.quizNumber][randomNum].audio);
+    const randomAudio = new Audio(this.unitsData[this.roundNumber][randomNum].audio);
     
     return [randomNum,randomAudio];
   }
 
   createFractionLogo() {
     document.querySelector(".question__image").style.backgroundImage = `url(${
-      this.unitsData[this.quizNumber][
-        this.unitsData[this.quizNumber].length - 1
+      this.unitsData[this.roundNumber][
+        this.unitsData[this.roundNumber].length - 1
       ].fractionLogo
     })`;
   }
@@ -26,7 +26,7 @@ export class Round {
     const answers = document.createElement("ul");
     answers.classList.add("answers");
 
-    for (let i = 0; i < this.unitsData[this.quizNumber].length - 1; i++) {
+    for (let i = 0; i < this.unitsData[this.roundNumber].length - 1; i++) {
       const answer = document.createElement("li");
       answer.classList.add("answer");
       const marker = document.createElement("span");
@@ -35,7 +35,7 @@ export class Round {
       answer.append(marker);
       answer.insertAdjacentText(
         "beforeend",
-        this.unitsData[this.quizNumber][i].name
+        this.unitsData[this.roundNumber][i].name
       );
       answers.append(answer);
     }
@@ -43,7 +43,7 @@ export class Round {
   }
 
   generateInfoCard() {
-    const cardData = this.unitsData[this.quizNumber][this.answerNumber];
+    const cardData = this.unitsData[this.roundNumber][this.answerNumber];
     const infoCard = `<div class="info__head">
       <div class="info__image"></div>
       <div class="info__body">
@@ -69,5 +69,12 @@ export class Round {
     document.querySelector(".question__name").textContent = "*****";
     document.querySelector(".quiz__info").textContent =
       "Прослушайте плеер и выберите персонажа из списка.";
+  }
+
+  playRound(){
+    const roundList = document.querySelectorAll(".round");
+    roundList[roundNumber].classList.add("round_active");
+
+    
   }
 }

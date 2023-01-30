@@ -1,5 +1,6 @@
 import unitsData from "./data.js";
 import { Round } from "./Round.js";
+import { Player } from "./Player.js";
 
 let isGuessed = false;
 let mainSound;
@@ -11,7 +12,7 @@ const questionPlayer = document.querySelector(".question__player");
 let infoPlayer;
 let unitAudio;
 
-const questionList = document.querySelectorAll(".question");
+const questionList = document.querySelectorAll(".round");
 
 let mainTimelinePlayed = document.querySelector(".player__playtime_played");
 const mainPlayerButton = document.querySelector(".player__control");
@@ -124,7 +125,7 @@ const pauseMainAudio = () => {
   mainPlayerButton.classList.remove("player__control_pause");
 };
 
-const togglePlay = (controlButton, audio) => {
+/*const togglePlay = (controlButton, audio) => {
   if (!audio.paused) {
     audio.pause();
     controlButton.classList.add("player__control_play");
@@ -134,7 +135,7 @@ const togglePlay = (controlButton, audio) => {
     controlButton.classList.remove("player__control_play");
     controlButton.classList.add("player__control_pause");
   }
-};
+};*/
 
 const rewindSong = (e, playerTimeline, playerTimelinePlayed, audio) => {
   const partOfDuration =
@@ -171,7 +172,7 @@ const createRound = (quizNumber) => {
 
 const resetRound = (quizNumber) => {
   points = 5;
-  questionList[quizNumber].classList.remove("question_active");
+  questionList[quizNumber].classList.remove("round_active");
   document.querySelector(".question__name").textContent = "*****";
   document.querySelector(".quiz__info").textContent =
     "Прослушайте плеер и выберите персонажа из списка.";
@@ -192,16 +193,17 @@ const resetRound = (quizNumber) => {
 };
 
 const playRound = (quizNumber) => {
-  questionList[quizNumber].classList.add("question_active");
+  questionList[quizNumber].classList.add("round_active");
   createRound(quizNumber);
-  mainAudioHandler = playerClickHandler(mainSound);
-
-  questionPlayer.addEventListener("click", mainAudioHandler);
+  const mainPlayer=new Player(mainSound);
+  
+  
+  questionPlayer.addEventListener("click", mainPlayer.playerClickHandler);
   mainSound.onended = () => {
     mainPlayerButton.classList.add("player__control_play");
     mainPlayerButton.classList.remove("player__control_pause");
   };
-  updateTimeBar(mainSound, mainTimelinePlayed);
+  mainPlayer.updateTimeBar();
 };
 
 const quizButtonClickHandler = (e) => {
@@ -210,6 +212,8 @@ const quizButtonClickHandler = (e) => {
     playRound(++roundNumber);
   }
 };
+
+let round=new Round(roundNumber,unitsData);
 
 playRound(roundNumber);
 

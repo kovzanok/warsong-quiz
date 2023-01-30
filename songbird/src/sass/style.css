@@ -885,17 +885,17 @@ ul {
   }
 }
 
-.header__questions {
+.header__rounds {
   flex-basis: 100%;
 }
 
-.questions {
+.rounds {
   display: flex;
   justify-content: space-between;
   flex-wrap: wrap;
 }
 
-.question {
+.round {
   background-color: #000039;
   margin: 10px 10px 0 10px;
   padding: 10px 25px;
@@ -905,11 +905,11 @@ ul {
   align-self: center;
   text-align: center;
 }
-.question_active {
+.round_active {
   background-color: #1e37ac;
 }
 @media (max-width: 768px) {
-  .question:last-child {
+  .round:last-child {
     flex-basis: 100%;
   }
 }

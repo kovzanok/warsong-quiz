@@ -36,17 +36,17 @@
   }
 }
 
-.header__questions {
+.header__rounds {
   flex-basis: 100%;
 }
 
-.questions {
+.rounds {
   display: flex;
   justify-content: space-between;
   flex-wrap: wrap;
 }
 
-.question {
+.round {
   background-color: $color-link-background;
   margin: 10px 10px 0 10px;
   padding: 10px 25px;
