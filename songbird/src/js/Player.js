@@ -14,27 +14,29 @@ export class Player {
     }
   }
 
-  playerClickHandler(playerTimelinePlayed) {
-    return (e) => {
-      this.playerTimelinePlayed = playerTimelinePlayed;
-      if (e.target.classList.contains("player__control")) {
-        this.controlButton = e.target;
-        console.log();
-        this.togglePlay();
-      } else if (e.target.classList.contains("player__playtime")) {
-        this.playerTimeline = e.target.parentNode.classList.contains(
-          "player__playtime"
-        )
-          ? e.target.parentNode
-          : e.target;
+  playerClickHandler = (e) => {
 
-        this.playerTimelinePlayed = this.playerTimeline.firstElementChild;
+    this.playerTimelinePlayed = e.target.parentNode.querySelector(
+      ".player__playtime_played"
+    );
+    
+    if (e.target.classList.contains("player__control")) {
+      this.controlButton = e.target;
+      console.log();
+      this.togglePlay();
+    } else if (e.target.classList.contains("player__playtime")) {
+      this.playerTimeline = e.target.parentNode.classList.contains(
+        "player__playtime"
+      )
+        ? e.target.parentNode
+        : e.target;
 
-        this.rewindSong(e);
-      }
-      this.updateTimeBar();
-    };
-  }
+      this.playerTimelinePlayed = this.playerTimeline.firstElementChild;
+
+      this.rewindSong(e);
+    }
+    this.updateTimeBar();
+  };
 
   rewindSong(e) {
     const partOfDuration =
@@ -45,7 +47,6 @@ export class Player {
   }
 
   setNewAudioTime = () => {
-    
     this.playerTimelinePlayed.style.width = `${Math.round(
       (this.audio.currentTime * 100) / this.audio.duration
     )}%`;
