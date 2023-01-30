@@ -1,19 +1,8 @@
 import unitsData from "./data.js";
 import { Round } from "./Round.js";
 
-let roundNumber =0;
+let roundNumber = 0;
 let score = 0;
-let points = 5;
-
-const rightAlarm = new Audio("./src/sound/right.mp3");
-const wrongAlarm = new Audio("./src/sound/wrong.mp3");
-
-const makeNextLvlButtonActive = () => {
-  quizButton.classList.remove("button_nonactive");
-  quizButton.classList.add("button_active");
-};
-
-
 
 const resetRound = (quizNumber) => {
   points = 5;
@@ -40,11 +29,9 @@ const resetRound = (quizNumber) => {
   mainTimelinePlayed = newTimeLine;
 };
 
-const quizButtonClickHandler = (e) => {
-  
-};
+const quizButtonClickHandler = (e) => {};
 
-let round = new Round(roundNumber, unitsData);
+let round = new Round(roundNumber, unitsData, score);
 
 round.playRound();
 

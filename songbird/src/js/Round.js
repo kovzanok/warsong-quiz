@@ -1,10 +1,14 @@
 import { Player } from "./Player.js";
 
 export class Round {
-  constructor(roundNumber, unitsData) {
+  constructor(roundNumber, unitsData, score) {
     this.roundNumber = roundNumber;
     this.unitsData = unitsData;
     this.isGuessed = false;
+    this.rightAlarm = new Audio("./src/sound/right.mp3");
+    this.wrongAlarm = new Audio("./src/sound/wrong.mp3");
+    this.points = 5;
+    this.score = 0;
   }
 
   generateRandomQuestion() {
@@ -66,6 +70,7 @@ export class Round {
     const infoImage = document.querySelector(".info__image");
     infoImage.style.backgroundImage = `url(${cardData.image})`;
   }
+
   generateInfoPlayer() {
     const infoPlayer = document.querySelector(".info__player");
 
@@ -87,6 +92,7 @@ export class Round {
         .classList.remove("player__control_pause");
     };
   }
+
   resetRound() {
     document.querySelector(".question__name").textContent = "*****";
     document.querySelector(".quiz__info").textContent =
@@ -140,13 +146,18 @@ export class Round {
       this.targetMarker.classList.add("answer__marker_green");
       this.targetMarker.classList.remove("answer__marker_hover");
       this.isGuessed = true;
-
       this.displayRightAnswer();
       this.pauseMainAudio();
+      this.showScore();
+      this.rightAlarm.play();
+      this.makeNextRoundButtonActive();
     } else {
-           
-      this.targetMarker.classList.add("answer__marker_red");
-      this.targetMarker.classList.remove("answer__marker_hover");
+      if (!this.targetMarker.classList.contains("answer__marker_red")) {
+        this.targetMarker.classList.add("answer__marker_red");
+        this.targetMarker.classList.remove("answer__marker_hover");
+        this.points--;
+        this.wrongAlarm.play();
+      }
     }
   }
 
@@ -161,9 +172,20 @@ export class Round {
     })`;
   }
 
+  showScore() {
+    this.score += this.points;
+    document.querySelector(".score").textContent = `Score: ${this.score}`;
+  }
+
   pauseMainAudio() {
     this.questionAudio.pause();
     this.questionPlayerControl.classList.add("player__control_play");
     this.questionPlayerControl.classList.remove("player__control_pause");
+  }
+
+  makeNextRoundButtonActive() {
+    const nextRoundButton = document.querySelector(".quiz__button");
+    nextRoundButton.classList.remove("button_nonactive");
+    nextRoundButton.classList.add("button_active");
   }
 }
