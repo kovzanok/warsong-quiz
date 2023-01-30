@@ -1,11 +1,17 @@
 export class Round {
-  constructor(quizNumber, unitsData,answerNumber=undefined) {
+  constructor(quizNumber, unitsData, answerNumber = undefined) {
     this.quizNumber = quizNumber;
     this.unitsData = unitsData;
     this.answerNumber = answerNumber;
   }
 
-  
+  generateRandomQuestion() {
+    const randomNum = Math.floor(Math.random() * 6);
+    const randomAudio = new Audio(this.unitsData[this.quizNumber][randomNum].audio);
+    
+    return [randomNum,randomAudio];
+  }
+
   createFractionLogo() {
     document.querySelector(".question__image").style.backgroundImage = `url(${
       this.unitsData[this.quizNumber][
@@ -37,7 +43,7 @@ export class Round {
   }
 
   generateInfoCard() {
-    const cardData = this.unitsData[this.quizNumber][this.number];
+    const cardData = this.unitsData[this.quizNumber][this.answerNumber];
     const infoCard = `<div class="info__head">
       <div class="info__image"></div>
       <div class="info__body">
@@ -57,5 +63,11 @@ export class Round {
     document.querySelector(".quiz__info").innerHTML = infoCard;
     const infoImage = document.querySelector(".info__image");
     infoImage.style.backgroundImage = `url(${cardData.image})`;
+  }
+
+  resetRound() {
+    document.querySelector(".question__name").textContent = "*****";
+    document.querySelector(".quiz__info").textContent =
+      "Прослушайте плеер и выберите персонажа из списка.";
   }
 }

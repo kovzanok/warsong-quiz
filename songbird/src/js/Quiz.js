@@ -4,8 +4,8 @@ import { Round } from "./Round.js";
 let isGuessed = false;
 let mainSound;
 let roundNumber = 0;
-let score=0;
-let points=5;
+let score = 0;
+let points = 5;
 
 const questionPlayer = document.querySelector(".question__player");
 let infoPlayer;
@@ -27,12 +27,15 @@ const makeNextLvlButtonActive = () => {
   quizButton.classList.add("button_active");
 };
 
-const answersClickHandler = (quizNumber, answersArray, randomNum) => {
+const answersClickHandler = (round, quizNumber, answersArray, randomNum) => {
   return (e) => {
     const answerNumber = answersArray.indexOf(e.target);
     const targetMarker = e.target.firstElementChild;
+    const cardData = unitsData[quizNumber][answerNumber];
 
-    generateInfoCard(answerNumber, quizNumber);
+    round.answerNumber = answerNumber;
+    round.generateInfoCard();
+    generateInfoPlayer(cardData);
 
     if (!isGuessed) {
       changeMarkerColor(targetMarker, answerNumber, randomNum, quizNumber);
@@ -40,33 +43,7 @@ const answersClickHandler = (quizNumber, answersArray, randomNum) => {
   };
 };
 
-const generateInfoCard = (number, quizNumber) => {
-  const cardData = unitsData[quizNumber][number];
-  const infoCard = `<div class="info__head">
-    <div class="info__image"></div>
-    <div class="info__body">
-      <div class="info__name">${cardData.name}</div>
-      <div class="info__name">${cardData.nameEng}</div>
-      <div class="info__player">
-      <div class="player__control player__control_play"></div>
-        <div class="player__playtime"><div class="player__playtime player__playtime_played"></div></div>
-        <div class="player__info"></div>
-      </div>
-    </div>
-  </div>
-  <div class="info__description">
-    ${cardData.description}
-  </div>`;
-
-  document.querySelector(".quiz__info").innerHTML = infoCard;
-  const infoImage = document.querySelector(".info__image");
-  infoImage.style.backgroundImage = `url(${cardData.image})`;
-
-  generateInfoPlayer(cardData);
-  
-};
-
-const generateInfoPlayer=(cardData)=>{
+const generateInfoPlayer = (cardData) => {
   infoPlayer = document.querySelector(".info__player");
 
   if (unitAudio) {
@@ -89,8 +66,7 @@ const generateInfoPlayer=(cardData)=>{
     unitAudio,
     infoPlayer.querySelector(".player__playtime_played")
   );
-}
-
+};
 
 const changeMarkerColor = (
   targetMarker,
@@ -104,8 +80,8 @@ const changeMarkerColor = (
     targetMarker.classList.remove("answer__marker_hover");
     displayRightAnswer(randomNum, quizNumber);
     rightAlarm.play();
-    score+=points;
-    document.querySelector('.score').textContent=`Score: ${score}`;
+    score += points;
+    document.querySelector(".score").textContent = `Score: ${score}`;
   } else {
     wrongAlarm.play();
     --points;
@@ -179,28 +155,22 @@ const updateTimeBar = (audio, timelinePlayed) => {
   setNewAudioTime(audio, timelinePlayed);
 };
 
-
 const createRound = (quizNumber) => {
-  const randomNum = Math.floor(Math.random() * 6);
-  const randomAudio = new Audio(unitsData[quizNumber][randomNum].audio);
+  const round = new Round(quizNumber, unitsData);
+  const [randomNum, randomAudio] = round.generateRandomQuestion();
   mainSound = randomAudio;
-
-  const round=new Round(quizNumber,unitsData);
-
   round.createFractionLogo();
   round.createAnswerList();
-  
-
   const answers = document.querySelector(".answers");
   const answersArray = [...answers.children];
   answers.addEventListener(
     "click",
-    answersClickHandler(quizNumber, answersArray, randomNum)
+    answersClickHandler(round, quizNumber, answersArray, randomNum)
   );
 };
 
-const resetQuiz = (quizNumber) => {
-  points=5;
+const resetRound = (quizNumber) => {
+  points = 5;
   questionList[quizNumber].classList.remove("question_active");
   document.querySelector(".question__name").textContent = "*****";
   document.querySelector(".quiz__info").textContent =
@@ -222,7 +192,6 @@ const resetQuiz = (quizNumber) => {
 };
 
 const playRound = (quizNumber) => {
-
   questionList[quizNumber].classList.add("question_active");
   createRound(quizNumber);
   mainAudioHandler = playerClickHandler(mainSound);
@@ -237,7 +206,7 @@ const playRound = (quizNumber) => {
 
 const quizButtonClickHandler = (e) => {
   if (e.target.classList.contains("button_active")) {
-    resetQuiz(roundNumber);
+    resetRound(roundNumber);
     playRound(++roundNumber);
   }
 };
