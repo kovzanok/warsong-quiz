@@ -49,12 +49,13 @@ const generateInfoPlayer = (cardData) => {
 
   if (unitAudio) {
     unitAudio.pause();
-    infoPlayer.removeEventListener("click", infoAudioHandler);
   }
-  unitAudio = new Audio(cardData.audio);
-  infoAudioHandler = playerClickHandler(unitAudio);
 
-  infoPlayer.addEventListener("click", infoAudioHandler);
+  unitAudio = new Audio(cardData.audio);
+  const unitPlayer=new Player(unitAudio);
+
+  infoPlayer.addEventListener("click", unitPlayer.playerClickHandler(infoPlayer.querySelector('.player__playtime_played')));
+
   unitAudio.onended = () => {
     infoPlayer
       .querySelector(".player__control")
@@ -63,10 +64,8 @@ const generateInfoPlayer = (cardData) => {
       .querySelector(".player__control")
       .classList.remove("player__control_pause");
   };
-  updateTimeBar(
-    unitAudio,
-    infoPlayer.querySelector(".player__playtime_played")
-  );
+
+  
 };
 
 const changeMarkerColor = (
@@ -100,60 +99,10 @@ const displayRightAnswer = (randomNum, quizNumber) => {
   pauseMainAudio();
 };
 
-const playerClickHandler = (audio) => {
-  return function (e) {
-    if (e.target.classList.contains("player__control")) {
-      const controlButton = e.target;
-      togglePlay(controlButton, audio);
-    } else if (e.target.classList.contains("player__playtime")) {
-      const playerTimeline = e.target.parentNode.classList.contains(
-        "player__playtime"
-      )
-        ? e.target.parentNode
-        : e.target;
-
-      const playerTimelinePlayed = playerTimeline.firstElementChild;
-
-      rewindSong(e, playerTimeline, playerTimelinePlayed, audio);
-    }
-  };
-};
-
 const pauseMainAudio = () => {
   mainSound.pause();
   mainPlayerButton.classList.add("player__control_play");
   mainPlayerButton.classList.remove("player__control_pause");
-};
-
-/*const togglePlay = (controlButton, audio) => {
-  if (!audio.paused) {
-    audio.pause();
-    controlButton.classList.add("player__control_play");
-    controlButton.classList.remove("player__control_pause");
-  } else {
-    audio.play();
-    controlButton.classList.remove("player__control_play");
-    controlButton.classList.add("player__control_pause");
-  }
-};*/
-
-const rewindSong = (e, playerTimeline, playerTimelinePlayed, audio) => {
-  const partOfDuration =
-    (e.clientX - e.target.getBoundingClientRect().left) /
-    playerTimeline.clientWidth;
-  audio.currentTime = partOfDuration * audio.duration;
-  setNewAudioTime(audio, playerTimelinePlayed);
-};
-
-const setNewAudioTime = (audio, playerTimelinePlayed) => {
-  playerTimelinePlayed.style.width = `${Math.round(
-    (audio.currentTime * 100) / audio.duration
-  )}%`;
-};
-
-const updateTimeBar = (audio, timelinePlayed) => {
-  setTimeout(updateTimeBar, 100, audio, timelinePlayed);
-  setNewAudioTime(audio, timelinePlayed);
 };
 
 const createRound = (quizNumber) => {
@@ -176,14 +125,18 @@ const resetRound = (quizNumber) => {
   document.querySelector(".question__name").textContent = "*****";
   document.querySelector(".quiz__info").textContent =
     "Прослушайте плеер и выберите персонажа из списка.";
+
   quizButton.classList.add("button_nonactive");
   quizButton.classList.remove("button_active");
+
   isGuessed = false;
+
   if (unitAudio) {
     unitAudio.pause();
-    infoPlayer.removeEventListener("click", infoAudioHandler);
+    
   }
-  questionPlayer.removeEventListener("click", mainAudioHandler);
+
+  //questionPlayer.removeEventListener("click", mainPlayer.playerClickHandler);
   document.querySelector(".player__playtime_played").remove();
   const newTimeLine = document.createElement("div");
   newTimeLine.classList.add("player__playtime");
@@ -195,15 +148,16 @@ const resetRound = (quizNumber) => {
 const playRound = (quizNumber) => {
   questionList[quizNumber].classList.add("round_active");
   createRound(quizNumber);
+
   const mainPlayer=new Player(mainSound);
-  
-  
-  questionPlayer.addEventListener("click", mainPlayer.playerClickHandler);
+  questionPlayer.addEventListener("click", mainPlayer.playerClickHandler(questionPlayer.querySelector('.player__playtime_played')));
+
   mainSound.onended = () => {
     mainPlayerButton.classList.add("player__control_play");
     mainPlayerButton.classList.remove("player__control_pause");
   };
-  mainPlayer.updateTimeBar();
+  
+  
 };
 
 const quizButtonClickHandler = (e) => {
