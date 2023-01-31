@@ -102,6 +102,8 @@ export class Round {
     this.nextRoundButton.classList.remove("button_active");
 
     this.unitAudio.pause();
+    this.questionAudio.pause();
+    this.pauseMainAudio();
     this.questionPlayer.removeEventListener(
       "click",
       this.mainPlayer.playerClickHandler

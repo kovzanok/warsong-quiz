@@ -14,7 +14,7 @@
     justify-content: center;
   }
   @include media-mobile {
-    justify-content: space-between;
+    justify-content: center;
   }
 }
 
@@ -34,6 +34,10 @@
       right: 0;
     }
   }
+}
+
+.header__score{
+  padding-top: 20px;
 }
 
 .header__rounds {
