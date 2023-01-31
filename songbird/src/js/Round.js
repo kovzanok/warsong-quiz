@@ -109,12 +109,13 @@ export class Round {
       this.mainPlayer.playerClickHandler
     );
 
-    this.mainPlayer.playerTimelinePlayed.remove();
-    const newPlayerTimelinePlayed = document.createElement("div");
-    newPlayerTimelinePlayed.classList.add("player__playtime");
-    newPlayerTimelinePlayed.classList.add("player__playtime_played");
-
-    this.mainPlayer.playerTimeline.append(newPlayerTimelinePlayed);
+    if (this.mainPlayer.playerTimelinePlayed) {
+      this.mainPlayer.playerTimelinePlayed.remove();
+      const newPlayerTimelinePlayed = document.createElement("div");
+      newPlayerTimelinePlayed.classList.add("player__playtime");
+      newPlayerTimelinePlayed.classList.add("player__playtime_played");
+      this.mainPlayer.playerTimeline.append(newPlayerTimelinePlayed);
+    }
   }
 
   playRound() {
