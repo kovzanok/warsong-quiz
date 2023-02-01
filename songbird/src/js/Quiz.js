@@ -1,6 +1,7 @@
 import unitsData from "./data.js";
 import { Round } from "./Round.js";
 import Result from "./Result.js";
+import Main from "./Main.js";
 
 export default class Quiz {
   constructor() {
@@ -10,6 +11,7 @@ export default class Quiz {
   }
 
   createQuiz = () => {
+    
     document.querySelector(
       "header"
     ).innerHTML = `<div class="wrapper header__wrapper">
@@ -91,10 +93,17 @@ export default class Quiz {
     const quizAgain = new Quiz();
 
     againButton.addEventListener("click", quizAgain.startQuizAgain);
+    menuButton.addEventListener('click', quizAgain.goToMain);
   }
 
   startQuizAgain=()=>{
     this.createQuiz();
+    Result.removeResultWindow();
+  }
+
+  goToMain(){
+    const main=new Main();
+    main.mainPageHandler();
     Result.removeResultWindow();
   }
 }

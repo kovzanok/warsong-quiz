@@ -124,6 +124,7 @@ export class Round {
     this.roundList = document.querySelectorAll(".round");
     this.roundList[this.roundNumber].classList.add("round_active");
     this.createRound();
+    window.scrollTo(0,0);
   }
 
   createRound() {
