@@ -128,7 +128,7 @@ export class Round {
     this.generateRandomQuestion();
     this.createFractionLogo();
     this.createAnswerList();
-
+    
     this.questionPlayer = document.querySelector(".question__player");
     this.questionPlayerControl = document.querySelector(".player__control");
     this.mainPlayer = new Player(this.questionAudio);

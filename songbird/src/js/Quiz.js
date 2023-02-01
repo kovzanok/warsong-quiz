@@ -1,14 +1,15 @@
 import unitsData from "./data.js";
 import { Round } from "./Round.js";
+import Result from "./Result.js";
 
 export default class Quiz {
   constructor() {
     this.roundNumber = 0;
     this.score = 0;
-    this.round=new Round(this.roundNumber,unitsData,this.score);
+    this.round = new Round(this.roundNumber, unitsData, this.score);
   }
 
-  createQuiz=()=> {
+  createQuiz = () => {
     document.querySelector(
       "header"
     ).innerHTML = `<div class="wrapper header__wrapper">
@@ -58,24 +59,42 @@ export default class Quiz {
   </div>
 </section>`;
 
-      document.querySelector('footer').innerHTML='';
-      this.round.playRound();
-      this.startQuiz();
-  }
+    document.querySelector("footer").innerHTML = "";
+    this.round.playRound();
+    this.startQuiz();
+  };
 
-  startQuiz(){
-    const quizButtonClickHandler = (e)=> {
-    if (e.target.classList.contains("button_active")) {
-      this.score = this.round.getScore();
-      this.round.resetRound();
-      this.roundNumber++;
-      this.round = new Round(this.roundNumber, unitsData, this.score);
-      this.round.playRound();
+  startQuiz() {
+    const quizButtonClickHandler = (e) => {
+      if (e.target.classList.contains("button_active")) {
+        this.score = this.round.getScore();
+        if (++this.roundNumber <= 5) {
+          this.round.resetRound();
+          this.round = new Round(this.roundNumber, unitsData, this.score);
+          this.round.playRound();
+        } else {
+          this.showQuizResult();
+        }
       }
-      };
-      
+    };
+
     const quizButton = document.querySelector(".quiz__button");
     quizButton.addEventListener("click", quizButtonClickHandler);
   }
 
+  showQuizResult() {
+    const result = new Result(this.score);
+    result.createResultWindow();
+
+    const againButton = document.querySelector(".button_restart");
+    const menuButton = document.querySelector(".button_menu");
+    const quizAgain = new Quiz();
+
+    againButton.addEventListener("click", quizAgain.startQuizAgain);
+  }
+
+  startQuizAgain=()=>{
+    this.createQuiz();
+    Result.removeResultWindow();
+  }
 }
