@@ -4,6 +4,7 @@ export default class Result {
   }
 
   createResultWindow() {
+    document.body.classList.add('body_lock');
     const resultBlock = document.createElement("DIV");
     resultBlock.classList.add("modal");
     resultBlock.innerHTML = `
@@ -37,5 +38,7 @@ export default class Result {
 
   static removeResultWindow(){
     document.querySelector('.modal').remove();
+    document.body.classList.remove('body_lock');
+    window.scrollTo(0,0);
   }
 }

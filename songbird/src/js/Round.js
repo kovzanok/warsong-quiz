@@ -116,6 +116,8 @@ export class Round {
       newPlayerTimelinePlayed.classList.add("player__playtime_played");
       this.mainPlayer.playerTimeline.append(newPlayerTimelinePlayed);
     }
+    
+    this.nextRoundButton.textContent=this.roundNumber===4?`Завершить игру`:`Следующий уровень`;
   }
 
   playRound() {
