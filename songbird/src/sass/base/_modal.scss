@@ -35,20 +35,12 @@
   height: 25%;
   min-height: 200px;
   max-width: 500px;
-  min-width: 440px;
+  min-width: 256px;
   background-color: $color-primary;
 
   border-radius: 20px;
-  @include media-tablet {
-    width: 75%;
-  }
-  @include media-tablet-single-column {
-    min-width: 390px;
-    min-height: 300px;
-  }
-  @include media-mobile {
-    min-width: 270px;
-  }
+  
+  
 }
 
 .modal__header {
@@ -56,15 +48,8 @@
 }
 .modal__buttons {
   display: flex;
-  justify-content: space-around;
-  @include media-tablet-single-column {
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    > .button_menu {
-      margin-top: 20px;
-    }
-  }
+  justify-content: center;
+  
 }
 
 .modal__text {

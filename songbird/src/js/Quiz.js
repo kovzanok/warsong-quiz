@@ -87,13 +87,17 @@ export default class Quiz {
   showQuizResult() {
     const result = new Result(this.score);
     result.createResultWindow();
-
-    const againButton = document.querySelector(".button_restart");
-    const menuButton = document.querySelector(".button_menu");
     const quizAgain = new Quiz();
 
-    againButton.addEventListener("click", quizAgain.startQuizAgain);
-    menuButton.addEventListener('click', quizAgain.goToMain);
+    if (document.querySelector(".button_restart")){
+      document.querySelector(".button_restart").addEventListener("click", quizAgain.startQuizAgain);
+    }
+    else{
+      document.querySelector(".button_menu").addEventListener('click', quizAgain.goToMain);
+    }
+    
+    
+
   }
 
   startQuizAgain=()=>{
