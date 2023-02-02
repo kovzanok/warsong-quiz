@@ -1,7 +1,12 @@
 import Main from "./Main.js";
 
-const main = new Main();
+window.onload = () => {
+  const language = localStorage.getItem("language")
+    ? localStorage.getItem("language")
+    : "ru";
+  const main = new Main(language);
+  main.createMainPage();
+  main.mainPageHandler();
+};
 
-main.createMainPage();
-main.mainPageHandler();
 

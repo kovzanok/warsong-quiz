@@ -2,8 +2,8 @@ import Quiz from "./Quiz.js";
 import languageSettings from "./language.js";
 
 export default class Main {
-  constructor() {
-    this.language = "ru";
+  constructor(language) {
+    this.language = language;
   }
 
   mainPageHandler() {
@@ -29,7 +29,7 @@ export default class Main {
       }
     };
 
-    const quiz = new Quiz();
+    const quiz = new Quiz(this.getLanguage());
 
     document.addEventListener("click", menuClickHandler);
     startQuizButton.addEventListener("click", quiz.createQuiz);
@@ -107,11 +107,17 @@ export default class Main {
       this.language = "en";
       this.createMainPage();
       this.mainPageHandler();
+      localStorage.setItem('language',this.getLanguage());
     } else {
-      console.log(this.language);
+      
       this.language = "ru";
       this.createMainPage();
       this.mainPageHandler();
+      localStorage.setItem('language',this.getLanguage());
     }
   };
+
+  getLanguage(){
+    return this.language;
+  }
 }

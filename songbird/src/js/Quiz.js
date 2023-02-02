@@ -2,16 +2,22 @@ import unitsData from "./data.js";
 import { Round } from "./Round.js";
 import Result from "./Result.js";
 import Main from "./Main.js";
+import languageSettings from "./language.js";
 
 export default class Quiz {
-  constructor() {
+  constructor(language) {
     this.roundNumber = 0;
     this.score = 0;
-    this.round = new Round(this.roundNumber, unitsData['en'], this.score);
+
+    this.language = language;
+    this.round = new Round(
+      this.roundNumber,
+      unitsData[this.language],
+      this.score,this.language
+    );
   }
 
   createQuiz = () => {
-    
     document.querySelector(
       "header"
     ).innerHTML = `<div class="wrapper header__wrapper header__quiz">
@@ -21,12 +27,12 @@ export default class Quiz {
     </div>
     <div class="header__rounds">
       <ul class="rounds">
-        <li class="round">Разминка</li>
-        <li class="round">Альянс</li>
-        <li class="round">Нежить</li>
-        <li class="round">Ночные эльфы</li>
-        <li class="round">Орда</li>
-        <li class="round">Нейтральные герои</li>
+        <li class="round">${languageSettings[this.language][5]}</li>
+        <li class="round">${languageSettings[this.language][6]}</li>
+        <li class="round">${languageSettings[this.language][7]}</li>
+        <li class="round">${languageSettings[this.language][8]}</li>
+        <li class="round">${languageSettings[this.language][9]}</li>
+        <li class="round">${languageSettings[this.language][10]}</li>
       </ul>
     </div>
   </div>`;
@@ -55,12 +61,12 @@ export default class Quiz {
       <div class="quiz__answers">
         
       </div>
-      <div class="quiz__info quiz__block">
-        Прослушайте плеер и выберите персонажа из списка.
+      <div class="quiz__info quiz__block">${languageSettings[this.language][11]}
+        
       </div>
     </div>
     <button class="button quiz__button button_nonactive">
-      Следующий уровень
+    ${languageSettings[this.language][12]}
     </button>
   </div>
 </section>`;
@@ -77,7 +83,12 @@ export default class Quiz {
 
         if (++this.roundNumber <= 5) {
           this.round.resetRound();
-          this.round = new Round(this.roundNumber, unitsData['en'], this.score);
+
+          this.round = new Round(
+            this.roundNumber,
+            unitsData[this.language],
+            this.score,this.language
+          );
           this.round.playRound();
         } else {
           this.round.questionAudio.pause();
@@ -94,27 +105,27 @@ export default class Quiz {
   showQuizResult() {
     const result = new Result(this.score);
     result.createResultWindow();
-    const quizAgain = new Quiz();
+    const quizAgain = new Quiz(localStorage.getItem('language'));
 
-    if (document.querySelector(".button_restart")){
-      document.querySelector(".button_restart").addEventListener("click", quizAgain.startQuizAgain);
+    if (document.querySelector(".button_restart")) {
+      document
+        .querySelector(".button_restart")
+        .addEventListener("click", quizAgain.startQuizAgain);
+    } else {
+      document
+        .querySelector(".button_menu")
+        .addEventListener("click", quizAgain.goToMain);
     }
-    else{
-      document.querySelector(".button_menu").addEventListener('click', quizAgain.goToMain);
-    }
-    
-    
-
   }
 
-  startQuizAgain=()=>{
-    
+  startQuizAgain = () => {
     this.createQuiz();
     Result.removeResultWindow();
-  }
+  };
 
-  goToMain(){
-    const main=new Main();
+  goToMain() {
+    const main = new Main(localStorage.getItem('language'));
+    main.createMainPage();
     main.mainPageHandler();
     Result.removeResultWindow();
   }

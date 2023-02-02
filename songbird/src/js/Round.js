@@ -1,14 +1,17 @@
 import { Player } from "./Player.js";
+import languageSettings from "./language.js";
 
 export class Round {
-  constructor(roundNumber, unitsData, score) {
+  constructor(roundNumber, unitsData, score,language) {
     this.roundNumber = roundNumber;
     this.unitsData = unitsData;
+    
     this.isGuessed = false;
     this.rightAlarm = new Audio("./src/sound/right.mp3");
     this.wrongAlarm = new Audio("./src/sound/wrong.mp3");
     this.points = 5;
     this.score = score;
+    this.language=language;
   }
 
   generateRandomQuestion() {
@@ -104,7 +107,7 @@ export class Round {
     this.roundList[this.roundNumber].classList.remove("round_active");
     document.querySelector(".question__name").textContent = "*****";
     document.querySelector(".quiz__info").textContent =
-      "Прослушайте плеер и выберите персонажа из списка.";
+    `${languageSettings[this.language][11]}`;
     this.nextRoundButton.classList.add("button_nonactive");
     this.nextRoundButton.classList.remove("button_active");
 
@@ -128,7 +131,7 @@ export class Round {
     }
 
     this.nextRoundButton.textContent =
-      this.roundNumber === 4 ? `Завершить игру` : `Следующий уровень`;
+      this.roundNumber === 4 ? `${languageSettings[this.language][13]}` : `${languageSettings[this.language][12]}`;
   }
 
   playRound() {
