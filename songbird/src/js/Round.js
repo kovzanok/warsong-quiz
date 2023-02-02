@@ -80,6 +80,7 @@ export class Round {
 
     if (this.unitAudio) {
       this.unitAudio.pause();
+      
     }
 
     this.unitAudio = new Audio(this.cardData.audio);
@@ -108,14 +109,14 @@ export class Round {
 
     this.unitAudio.pause();
     this.questionAudio.pause();
+
     this.pauseMainAudio();
     this.questionPlayer.removeEventListener(
       "click",
       this.mainPlayer.playerClickHandler
     );
 
-    console.log(this.questionPlayer.querySelector(".info__current"));
-    this.questionPlayer.querySelector(".info__current").textContent = "00:00";
+    this.mainPlayer.audio=null;
 
     if (this.mainPlayer.playerTimelinePlayed) {
       this.mainPlayer.playerTimelinePlayed.remove();

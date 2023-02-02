@@ -105,6 +105,7 @@ export default class Quiz {
   }
 
   startQuizAgain=()=>{
+    this.round.resetRound();
     this.createQuiz();
     Result.removeResultWindow();
   }
