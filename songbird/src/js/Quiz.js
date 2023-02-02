@@ -14,7 +14,7 @@ export default class Quiz {
     
     document.querySelector(
       "header"
-    ).innerHTML = `<div class="wrapper header__wrapper">
+    ).innerHTML = `<div class="wrapper header__wrapper header__quiz">
         
     <div class="header__score">
       <span class="score">Score: 0</span>

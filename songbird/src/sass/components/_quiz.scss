@@ -10,10 +10,8 @@
 .quiz__block {
   background-color: $color-primary;
   border-radius: 20px;
-  padding: 30px;
-  @include media-tablet-single-column {
-    padding: 20px;
-  }
+  padding: 20px;
+  
 }
 
 .quiz__question {

@@ -867,12 +867,7 @@ ul {
 .quiz__block {
   background-color: #152F4B;
   border-radius: 20px;
-  padding: 30px;
-}
-@media (max-width: 600px) {
-  .quiz__block {
-    padding: 20px;
-  }
+  padding: 20px;
 }
 
 .quiz__question {
@@ -947,7 +942,11 @@ ul {
 }
 
 .header__score {
-  padding-top: 20px;
+  padding-top: 10px;
+}
+
+.header__quiz {
+  justify-content: center;
 }
 
 .header__rounds {

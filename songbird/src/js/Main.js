@@ -75,6 +75,8 @@ export default class Main {
     const hamburger = document.querySelector(".hamburger");
     const navigation = document.querySelector(".navigation");
     const startQuizButton = document.querySelector(".intro__button");
+    
+
     const hamburgerClickHandler = (e) => {
       hamburger.classList.toggle("hamburger_active");
       navigation.classList.toggle("navigation_active");
