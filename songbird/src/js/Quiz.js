@@ -7,7 +7,7 @@ export default class Quiz {
   constructor() {
     this.roundNumber = 0;
     this.score = 0;
-    this.round = new Round(this.roundNumber, unitsData, this.score);
+    this.round = new Round(this.roundNumber, unitsData['en'], this.score);
   }
 
   createQuiz = () => {
@@ -77,7 +77,7 @@ export default class Quiz {
 
         if (++this.roundNumber <= 5) {
           this.round.resetRound();
-          this.round = new Round(this.roundNumber, unitsData, this.score);
+          this.round = new Round(this.roundNumber, unitsData['en'], this.score);
           this.round.playRound();
         } else {
           this.round.questionAudio.pause();
