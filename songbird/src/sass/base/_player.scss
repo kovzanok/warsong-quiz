@@ -1,8 +1,14 @@
 .question__player,
 .info__player {
   @extend %player;
-  @include media-mobile{
+  @include media-mobile {
     align-self: center;
+    flex-wrap: wrap;
+    justify-content: center;
+  }
+  @include media-mobilesmall{
+    flex-wrap: nowrap;
+    justify-content: center;
   }
 }
 
@@ -17,10 +23,10 @@
   &_pause {
     @include player-button($url: "../img/pause.svg");
   }
-  @include media-tablet{
+  @include media-tablet {
     margin-right: 5px;
   }
-  @include media-mobile{
+  @include media-mobile {
     padding-left: 5px;
   }
 }
@@ -38,4 +44,10 @@
     width: 0;
     background-color: $color-link-background;
   }
+}
+
+.player__info {
+  display: flex;
+  font-size: 1.8rem;
+  padding-left: 10px;
 }

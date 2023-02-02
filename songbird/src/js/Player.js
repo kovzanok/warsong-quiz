@@ -1,6 +1,9 @@
 export class Player {
-  constructor(audio) {
+  constructor(audio,player) {
     this.audio = audio;
+    this.player=player;
+    
+    
   }
   togglePlay() {
     if (!this.audio.paused) {
@@ -12,6 +15,7 @@ export class Player {
       this.controlButton.classList.remove("player__control_play");
       this.controlButton.classList.add("player__control_pause");
     }
+    
   }
 
   playerClickHandler = (e) => {
@@ -51,10 +55,25 @@ export class Player {
     this.playerTimelinePlayed.style.width = `${Math.round(
       (this.audio.currentTime * 100) / this.audio.duration
     )}%`;
+    this.setCurrentTime();
   };
 
+  setAudioDuration(){
+    const durationTime=this.player.querySelector('.info__duration');
+    this.audio.onloadedmetadata=()=>{
+      durationTime.textContent=`${Math.floor(this.audio.duration/60)}:${Math.floor(this.audio.duration%60)}`;
+    }
+    
+  }
+
+  setCurrentTime(){
+    const currentTime=this.player.querySelector('.info__current');
+    currentTime.textContent=`${String(Math.floor(this.audio.currentTime/60)).padStart(2,'0')}:${String(Math.floor(this.audio.currentTime%60)).padStart(2,'0')}`;
+
+  }
+
   updateTimeBar = () => {
-    setTimeout(this.updateTimeBar, 100);
+    setTimeout(this.updateTimeBar, 1000);
 
     this.setNewAudioTime();
   };

@@ -43,7 +43,11 @@ export default class Quiz {
             <div class="player__playtime player__playtime_played"></div>
           </div>
           
-          <div class="player__info"></div>
+          <div class="player__info">
+            <div class='info__current'>00:00</div>
+            <div class='info__divider'>/</div>
+            <div class='info__duration'></div>
+          </div>
         </div>
       </div>
     </div>

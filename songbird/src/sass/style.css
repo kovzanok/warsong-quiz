@@ -476,6 +476,15 @@ ul {
   .question__player,
   .info__player {
     align-self: center;
+    flex-wrap: wrap;
+    justify-content: center;
+  }
+}
+@media (max-width: 320px) {
+  .question__player,
+  .info__player {
+    flex-wrap: nowrap;
+    justify-content: center;
   }
 }
 
@@ -518,6 +527,12 @@ ul {
   z-index: 4;
   width: 0;
   background-color: #000039;
+}
+
+.player__info {
+  display: flex;
+  font-size: 1.8rem;
+  padding-left: 10px;
 }
 
 .hamburger__line, .hamburger::after, .hamburger::before {

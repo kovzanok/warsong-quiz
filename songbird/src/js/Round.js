@@ -58,7 +58,11 @@ export class Round {
         <div class="info__player">
         <div class="player__control player__control_play"></div>
           <div class="player__playtime"><div class="player__playtime player__playtime_played"></div></div>
-          <div class="player__info"></div>
+          <div class="player__info">
+            <div class='info__current'>00:00</div>
+            <div class='info__divider'>/</div>
+            <div class='info__duration'></div>
+          </div>
         </div>
       </div>
     </div>
@@ -79,9 +83,10 @@ export class Round {
     }
 
     this.unitAudio = new Audio(this.cardData.audio);
-    const unitPlayer = new Player(this.unitAudio);
+    const unitPlayer = new Player(this.unitAudio, infoPlayer);
 
     infoPlayer.addEventListener("click", unitPlayer.playerClickHandler);
+    unitPlayer.setAudioDuration();
 
     this.unitAudio.onended = () => {
       infoPlayer
@@ -109,6 +114,9 @@ export class Round {
       this.mainPlayer.playerClickHandler
     );
 
+    console.log(this.questionPlayer.querySelector(".info__current"));
+    this.questionPlayer.querySelector(".info__current").textContent = "00:00";
+
     if (this.mainPlayer.playerTimelinePlayed) {
       this.mainPlayer.playerTimelinePlayed.remove();
       const newPlayerTimelinePlayed = document.createElement("div");
@@ -116,31 +124,33 @@ export class Round {
       newPlayerTimelinePlayed.classList.add("player__playtime_played");
       this.mainPlayer.playerTimeline.append(newPlayerTimelinePlayed);
     }
-    
-    this.nextRoundButton.textContent=this.roundNumber===4?`Завершить игру`:`Следующий уровень`;
+
+    this.nextRoundButton.textContent =
+      this.roundNumber === 4 ? `Завершить игру` : `Следующий уровень`;
   }
 
   playRound() {
     this.roundList = document.querySelectorAll(".round");
     this.roundList[this.roundNumber].classList.add("round_active");
     this.createRound();
-    window.scrollTo(0,0);
+    window.scrollTo(0, 0);
   }
 
   createRound() {
     this.generateRandomQuestion();
     this.createFractionLogo();
     this.createAnswerList();
-    
+
     this.questionPlayer = document.querySelector(".question__player");
     this.questionPlayerControl = document.querySelector(".player__control");
-    this.mainPlayer = new Player(this.questionAudio);
+    this.mainPlayer = new Player(this.questionAudio, this.questionPlayer);
 
     this.questionPlayer.addEventListener(
       "click",
       this.mainPlayer.playerClickHandler
     );
 
+    this.mainPlayer.setAudioDuration();
     this.questionAudio.onended = () => {
       this.questionPlayerControl.classList.add("player__control_play");
       this.questionPlayerControl.classList.remove("player__control_pause");
