@@ -1,5 +1,6 @@
 .logo-image{
     width: 170px;
+    cursor: pointer;
     @include media-mobile{
         position: relative;
         z-index: 4;

@@ -127,6 +127,7 @@ svg {
 
 .logo-image {
   width: 170px;
+  cursor: pointer;
 }
 @media (max-width: 426px) {
   .logo-image {

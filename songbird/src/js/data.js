@@ -1,5 +1,5 @@
 const unitsData = {
-  'ru':[
+  ru: [
     [
       {
         name: "Утер",
@@ -289,8 +289,7 @@ const unitsData = {
       {
         name: "Королева змей",
         nameEng: "Нага",
-        description:
-          "Грозная колдунья из народа наг.",
+        description: "Грозная колдунья из народа наг.",
         image: "./src/img/unit_pic/neutral/naga.jpg",
         audio: "./src/sound/ru/neutral/naga.mp3",
       },
@@ -307,7 +306,7 @@ const unitsData = {
       },
     ],
   ],
-  'en' : [
+  en: [
     [
       {
         name: "Uther",
@@ -538,8 +537,7 @@ const unitsData = {
       {
         name: "Grommash Hellscream",
         nameEng: "Blademaster",
-        description:
-          `Chief of the Clan of Battle Axes. He is known for his short temper and loud voice, which is especially pronounced when he screams. Because of this, Thunder got its nickname - "Hell's Scream.`,
+        description: `Chief of the Clan of Battle Axes. He is known for his short temper and loud voice, which is especially pronounced when he screams. Because of this, Thunder got its nickname - "Hell's Scream.`,
         image: "./src/img/unit_pic/horde/grom.jpg",
         audio: "./src/sound/en/horde/grom.mp3",
       },
@@ -597,8 +595,7 @@ const unitsData = {
       {
         name: "Naga Sea Witch",
         nameEng: "Naga",
-        description:
-          "A formidable sorceress of the Nag people.",
+        description: "A formidable sorceress of the Nag people.",
         image: "./src/img/unit_pic/neutral/naga.jpg",
         audio: "./src/sound/en/neutral/naga.mp3",
       },
@@ -615,7 +612,6 @@ const unitsData = {
       },
     ],
   ],
-
 };
 
 export default unitsData;
