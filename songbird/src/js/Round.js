@@ -100,6 +100,7 @@ export class Round {
   }
 
   resetRound() {
+    console.log(this.roundList);
     this.roundList[this.roundNumber].classList.remove("round_active");
     document.querySelector(".question__name").textContent = "*****";
     document.querySelector(".quiz__info").textContent =

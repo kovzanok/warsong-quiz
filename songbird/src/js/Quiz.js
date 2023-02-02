@@ -74,11 +74,14 @@ export default class Quiz {
     const quizButtonClickHandler = (e) => {
       if (e.target.classList.contains("button_active")) {
         this.score = this.round.getScore();
+
         if (++this.roundNumber <= 5) {
           this.round.resetRound();
           this.round = new Round(this.roundNumber, unitsData, this.score);
           this.round.playRound();
         } else {
+          this.round.questionAudio.pause();
+          this.round.unitAudio.pause();
           this.showQuizResult();
         }
       }
@@ -105,7 +108,7 @@ export default class Quiz {
   }
 
   startQuizAgain=()=>{
-    this.round.resetRound();
+    
     this.createQuiz();
     Result.removeResultWindow();
   }
