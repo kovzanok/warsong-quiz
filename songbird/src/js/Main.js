@@ -1,4 +1,5 @@
 import Quiz from "./Quiz.js";
+import Gallery from "./Gallery.js";
 import languageSettings from "./language.js";
 
 export default class Main {
@@ -10,6 +11,8 @@ export default class Main {
     const hamburger = document.querySelector(".hamburger");
     const navigation = document.querySelector(".navigation");
     const startQuizButton = document.querySelector(".intro__button");
+    const galleryLink=navigation.lastElementChild;
+    
     const logo = document.querySelector(".logo-image");
 
     const hamburgerClickHandler = (e) => {
@@ -29,11 +32,15 @@ export default class Main {
       }
     };
 
+
     const quiz = new Quiz(this.getLanguage());
+    const gallery=new Gallery(this.language);
 
     document.addEventListener("click", menuClickHandler);
     startQuizButton.addEventListener("click", quiz.createQuiz);
     logo.addEventListener("click", this.changeLanguage);
+    galleryLink.addEventListener("click",gallery.showGallery);
+
   }
 
   createMainPage() {

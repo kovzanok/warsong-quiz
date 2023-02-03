@@ -19,7 +19,7 @@
   border-radius: 10px;
   @extend %transition;
   &:hover {
-    border: 4px solid $color-primary;
+    border: 4px solid $color-text;
   }
 }
 
