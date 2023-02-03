@@ -1,3 +1,5 @@
+import languageSettings from "./language.js";
+
 export default class Result {
   constructor(score) {
     this.score = score;
@@ -11,23 +13,23 @@ export default class Result {
         <div class="modal__body">
           <div class="modal__content">
             <div class="modal__header">
-              <h2 class="modal__title">Игра завершена!</h2>
+              <h2 class="modal__title">${languageSettings[localStorage.getItem('language')][14]}</h2>
             </div>
             <div class="modal__main">
               <div class="modal__text">
-                Вы набрали ${this.score} баллов! ${
-      this.score === 30 ? "Это абсолютная победа!" : ""
+                ${languageSettings[localStorage.getItem('language')][15]} ${this.score} ${languageSettings[localStorage.getItem('language')][16]}! ${
+      this.score === 30 ? `${languageSettings[localStorage.getItem('language')][17]}!` : ""
     }
               </div>
               <div class="modal__buttons">
               ${
                 this.score === 30
                   ? `<button class="button button_active button_menu">
-              На главную
+                  ${languageSettings[localStorage.getItem('language')][18]}
             </button>`
                   : `
             <button class="button button_active button_restart">
-              Начать заново
+            ${languageSettings[localStorage.getItem('language')][19]}
             </button>`
               }
                 
