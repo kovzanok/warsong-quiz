@@ -765,6 +765,10 @@ ul {
   visibility: visible;
 }
 
+.modal__title {
+  text-align: center;
+}
+
 .modal__body {
   display: flex;
   justify-content: center;
@@ -781,7 +785,7 @@ ul {
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  padding: 0 20px;
+  padding: 10px 20px;
   width: 50%;
   height: 25%;
   min-height: 200px;
