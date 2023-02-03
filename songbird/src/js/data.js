@@ -3,7 +3,7 @@ const unitsData = {
     [
       {
         name: "Утер",
-        nameEng: "паладин",
+        nameEng: "Паладин",
         description:
           "Первый паладин из Ордена Серебряной Длани, который повел свой орден на битву против Орды во времена Второй Войны. ",
         image: "./src/img/unit_pic/training/uther.jpg",

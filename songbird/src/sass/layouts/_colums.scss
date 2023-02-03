@@ -4,3 +4,13 @@
         @include columns($width:100%);
     }
 }
+
+.layout-3-column{
+    @include columns($width:33%);
+    >*{
+        margin-top: 30px;
+    }
+    @include media-mobile{
+        @include columns($width:100%);
+    }
+}
