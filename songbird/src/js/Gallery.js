@@ -1,4 +1,5 @@
 import unitsData from "./data.js";
+import { Player } from "./Player.js";
 
 export default class Gallery {
   constructor(language) {
@@ -48,9 +49,11 @@ export default class Gallery {
   }
 
   galleryClickHandler = (e) => {
-    function modalClickHandler(e) {
+    const modalClickHandler=(e)=> {
       if (e.target.classList.contains("modal__close-button")) {
-        this.classList.remove("modal_active");
+        
+        if (this.unitAudio)this.unitAudio.pause();
+        e.target.closest(".modal").classList.remove("modal_active");
 
         setTimeout(function () {
           e.target.closest(".modal").remove();
@@ -118,5 +121,32 @@ export default class Gallery {
       ".info__image"
     ).style.backgroundImage = `url(${unit.image})`;
     infoModal.classList.add("modal_active");
+    
+    
+    this.generateInfoPlayer(unit);
+  }
+
+  generateInfoPlayer(unit) {
+    const infoPlayer = document.querySelector(".info__player");
+
+    if (this.unitAudio) {
+      this.unitAudio.pause();
+      
+    }
+
+    this.unitAudio = new Audio(unit.audio);
+    const unitPlayer = new Player(this.unitAudio, infoPlayer);
+
+    infoPlayer.addEventListener("click", unitPlayer.playerClickHandler);
+    unitPlayer.setAudioDuration();
+
+    this.unitAudio.onended = () => {
+      infoPlayer
+        .querySelector(".player__control")
+        .classList.add("player__control_play");
+      infoPlayer
+        .querySelector(".player__control")
+        .classList.remove("player__control_pause");
+    };
   }
 }
