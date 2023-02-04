@@ -50,7 +50,8 @@ export default class Gallery {
 
   galleryClickHandler = (e) => {
     const modalClickHandler=(e)=> {
-      if (e.target.classList.contains("modal__close-button")) {
+      
+      if (e.target.classList.contains("modal__close-button")||e.target.classList.contains('modal__body')) {
         
         if (this.unitAudio)this.unitAudio.pause();
         e.target.closest(".modal").classList.remove("modal_active");
@@ -58,6 +59,7 @@ export default class Gallery {
         setTimeout(function () {
           e.target.closest(".modal").remove();
         }, 300);
+        document.body.classList.remove('body_lock')
       }
     }
 
@@ -124,6 +126,7 @@ export default class Gallery {
     
     
     this.generateInfoPlayer(unit);
+    document.body.classList.add('body_lock');
   }
 
   generateInfoPlayer(unit) {
