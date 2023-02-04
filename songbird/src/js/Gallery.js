@@ -3,6 +3,7 @@ import unitsData from "./data.js";
 export default class Gallery {
   constructor(language) {
     this.language = language;
+    this.count = 0;
   }
 
   showGallery = () => {
@@ -15,7 +16,10 @@ export default class Gallery {
           </div>
         </div>
       </section>`;
-      this.createGallery();
+    this.galleryLayout = document.querySelector(".layout-max-columns");
+    this.createGallery();
+
+    this.galleryLayout.addEventListener("click", this.galleryClickHandler);
   };
 
   createGalleryBlock(fractionNumber, unitNumber) {
@@ -26,20 +30,93 @@ export default class Gallery {
     galleryItem.style.backgroundImage = `url(${
       unitsData[this.language][fractionNumber][unitNumber].image
     })`;
+    galleryItem.setAttribute("data-fraction", fractionNumber);
+    galleryItem.setAttribute("data-unit", unitNumber);
     galleryBlock.append(galleryItem);
 
     return galleryBlock;
   }
 
   createGallery() {
-    console.log(this.language);
     const fractions = unitsData[this.language];
-    const galleryLayout = document.querySelector(".layout-max-columns");
 
     for (let i = 0; i < fractions.length; i++) {
-      for (let j = 0; j < fractions[i].length-1; j++) {
-        galleryLayout.append(this.createGalleryBlock(i, j));
+      for (let j = 0; j < fractions[i].length - 1; j++) {
+        this.galleryLayout.append(this.createGalleryBlock(i, j));
       }
     }
+  }
+
+  galleryClickHandler = (e) => {
+    function modalClickHandler(e) {
+      if (e.target.classList.contains("modal__close-button")) {
+        this.classList.remove("modal_active");
+
+        setTimeout(function () {
+          e.target.closest(".modal").remove();
+        }, 300);
+      }
+    }
+
+    if (e.target.classList.contains("block__item")) {
+      const unit =
+        unitsData[this.language][e.target.dataset.fraction][
+          e.target.dataset.unit
+        ];
+      this.createInfoModal(unit);
+      const galleryModal = document.querySelector(".gallery__modal");
+      galleryModal.addEventListener("click", modalClickHandler);
+    }
+  };
+
+  createInfoModal(unit) {
+    const infoModal = document.createElement("DIV");
+    infoModal.className = "modal gallery__modal";
+    const infoBody = `
+    <div class="modal__body">
+      <div class="modal__content">
+        <div class="modal__close-button">X</div>
+        <div class="modal__header">
+          <div class="info__head">
+            <div class="info__image"></div>
+            <div class="info__body">
+              <div class="info__name">${unit.name}</div>
+              <div class="info__name">${unit.nameEng}</div>
+              <div class="info__player">
+                <div class="player__bar">
+                  <div class="player__control player__control_play"></div>
+                  <div class="player__playtime">
+                    <div
+                      class="player__playtime player__playtime_played"
+                    ></div>
+                  </div>
+                </div>
+
+                <div class="player__info">
+                  <div class="info__current">00:00</div>
+                  <div class="info__divider">/</div>
+                  <div class="info__duration">00:00</div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="modal__main">
+          <div class="modal__text">
+            <div class="info__description">
+              ${unit.description}
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  `;
+
+    infoModal.innerHTML = infoBody;
+    document.body.append(infoModal);
+    document.querySelector(
+      ".info__image"
+    ).style.backgroundImage = `url(${unit.image})`;
+    infoModal.classList.add("modal_active");
   }
 }

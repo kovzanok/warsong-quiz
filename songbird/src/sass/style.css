@@ -964,6 +964,9 @@ ul {
   width: 90%;
   padding-bottom: 10px;
 }
+.gallery__modal .modal__close-button {
+  cursor: pointer;
+}
 .gallery__modal .info__head {
   flex-direction: column;
 }
