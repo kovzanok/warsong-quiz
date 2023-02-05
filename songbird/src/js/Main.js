@@ -154,8 +154,13 @@ export default class Main {
         </div>
       </footer>`
     );
-    
-    document.querySelector(`.language_${this.language}`).classList.add('language_active');
+    if (document.querySelector(".language_active"))
+      document
+        .querySelector(".language_active")
+        .classList.remove("language_active");
+    document
+      .querySelector(`.language_${this.language}`)
+      .classList.add("language_active");
   }
 
   changeLanguage = (e) => {
@@ -171,14 +176,19 @@ export default class Main {
         firstLetters[i].textContent = languageSettings[this.language][i][0];
         words[i].textContent = languageSettings[this.language][i].slice(1);
       }
-
+      if (document.querySelector(".language_active"))
+        document
+          .querySelector(".language_active")
+          .classList.remove("language_active");
+      document
+        .querySelector(`.language_${this.language}`)
+        .classList.add("language_active");
       gallery.showGallery();
     } else {
       this.createMainPage();
       this.mainPageHandler();
     }
-    
-    e.target.classList.add('language_active');
+
     localStorage.setItem("language", this.getLanguage());
   };
 
