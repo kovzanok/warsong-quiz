@@ -1,5 +1,6 @@
 import unitsData from "./data.js";
 import { Player } from "./Player.js";
+import Main from "./Main.js";
 
 export default class Gallery {
   constructor(language) {
@@ -10,9 +11,7 @@ export default class Gallery {
   showGallery = () => {
     document.querySelector("main").innerHTML = `<section class="gallery">
         <div class="wrapper gallery__wrapper">
-          <div class="layout-max-columns">
-            
-            
+          <div class="layout-max-columns">       
             
           </div>
         </div>
@@ -49,28 +48,35 @@ export default class Gallery {
   }
 
   galleryClickHandler = (e) => {
-    const modalClickHandler=(e)=> {
-      
-      if (e.target.classList.contains("modal__close-button")||e.target.classList.contains('modal__body')) {
-        
-        if (this.unitAudio)this.unitAudio.pause();
+    const logo = document.querySelector(".logo-image");
+    const pseudoMain = new Main(localStorage.getItem("language"));
+    logo.addEventListener("click", pseudoMain.changeLanguage);
+    pseudoMain.navigationHandler();
+
+    const modalClickHandler = (e) => {
+      if (
+        e.target.classList.contains("modal__close-button") ||
+        e.target.classList.contains("modal__body")
+      ) {
+        if (this.unitAudio) this.unitAudio.pause();
         e.target.closest(".modal").classList.remove("modal_active");
 
         setTimeout(function () {
           e.target.closest(".modal").remove();
         }, 300);
-        document.body.classList.remove('body_lock')
+        document.body.classList.remove("body_lock");
       }
-    }
+    };
 
     if (e.target.classList.contains("block__item")) {
+      if (this.galleryModal) this.galleryModal.removeEventListener("click", modalClickHandler);
       const unit =
         unitsData[this.language][e.target.dataset.fraction][
           e.target.dataset.unit
         ];
       this.createInfoModal(unit);
-      const galleryModal = document.querySelector(".gallery__modal");
-      galleryModal.addEventListener("click", modalClickHandler);
+      this.galleryModal = document.querySelector(".gallery__modal");
+      this.galleryModal.addEventListener("click", modalClickHandler);
     }
   };
 
@@ -123,10 +129,9 @@ export default class Gallery {
       ".info__image"
     ).style.backgroundImage = `url(${unit.image})`;
     infoModal.classList.add("modal_active");
-    
-    
+
     this.generateInfoPlayer(unit);
-    document.body.classList.add('body_lock');
+    document.body.classList.add("body_lock");
   }
 
   generateInfoPlayer(unit) {
@@ -134,7 +139,6 @@ export default class Gallery {
 
     if (this.unitAudio) {
       this.unitAudio.pause();
-      
     }
 
     this.unitAudio = new Audio(unit.audio);

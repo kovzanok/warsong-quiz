@@ -7,40 +7,56 @@ export default class Main {
     this.language = language;
   }
 
-  mainPageHandler() {
+  navigationHandler() {
+    console.log(this)
     const hamburger = document.querySelector(".hamburger");
     const navigation = document.querySelector(".navigation");
-    const startQuizButton = document.querySelector(".intro__button");
-    const galleryLink=navigation.lastElementChild;
-    
+    const galleryLink = navigation.lastElementChild;
+    const quizLink = navigation.querySelectorAll(".navigation__link")[1];
     const logo = document.querySelector(".logo-image");
 
     const hamburgerClickHandler = (e) => {
+      //console.log(e.target);
+      //console.log(hamburger)
       hamburger.classList.toggle("hamburger_active");
       navigation.classList.toggle("navigation_active");
       document.body.classList.toggle("body_lock");
     };
 
+    
+
     const menuClickHandler = (e) => {
-      if (e.target.closest(".hamburger")) {
-        hamburgerClickHandler();
-      } else if (
-        !e.target.classList.contains("navigation__link") &&
-        navigation.classList.contains("navigation_active")
-      ) {
-        hamburgerClickHandler();
+      console.log(e.target)
+      if (e.target.classList.contains('hamburger')||e.target.closest('.hamburger')||e.target.classList.contains('navigation__link')||e.target.closest('.navigation__link')){
+        hamburgerClickHandler(e);
       }
+
     };
 
+   
 
-    const quiz = new Quiz(this.getLanguage());
-    const gallery=new Gallery(this.language);
+    const quizLinkHandler=()=>{
+      const quiz = new Quiz(this.getLanguage());
+      quiz.createQuiz();
+    }
 
-    document.addEventListener("click", menuClickHandler);
-    startQuizButton.addEventListener("click", quiz.createQuiz);
+    const galleryLinkHandler=()=>{
+      const gallery = new Gallery(this.language);
+      gallery.showGallery();
+    }
+
+    document.onclick= menuClickHandler;
+    quizLink.addEventListener("click", quizLinkHandler);
     logo.addEventListener("click", this.changeLanguage);
-    galleryLink.addEventListener("click",gallery.showGallery);
+    galleryLink.addEventListener("click", galleryLinkHandler);
+  }
 
+  mainPageHandler() {
+    const startQuizButton=document.querySelector('.intro__button');
+    const quiz = new Quiz(this.getLanguage());
+
+    startQuizButton.addEventListener("click", quiz.createQuiz);
+    this.navigationHandler();
   }
 
   createMainPage() {
@@ -64,17 +80,23 @@ export default class Main {
             <ul class="navigation">
               <li class="navigation__item">
                 <a class="navigation__link" href="index.html"
-                  ><span class="colored-fist-letter">${languageSettings[this.language][0][0]}</span>${languageSettings[this.language][0].slice(1)}</a
+                  ><span class="colored-fist-letter">${
+                    languageSettings[this.language][0][0]
+                  }</span><span class="the-rest-of-word">${languageSettings[this.language][0].slice(1)}</span></a
                 >
               </li>
               <li class="navigation__item">
                 <a class="navigation__link" href="#"
-                  ><span class="colored-fist-letter">${languageSettings[this.language][1][0]}</span>${languageSettings[this.language][1].slice(1)}</a
+                  ><span class="colored-fist-letter">${
+                    languageSettings[this.language][1][0]
+                  }</span><span class="the-rest-of-word">${languageSettings[this.language][1].slice(1)}</span></a
                 >
               </li>
               <li class="navigation__item">
                 <a class="navigation__link" href="#"
-                  ><span class="colored-fist-letter">${languageSettings[this.language][2][0]}</span>${languageSettings[this.language][2].slice(1)}</a
+                  ><span class="colored-fist-letter">${
+                    languageSettings[this.language][2][0]
+                  }</span><span class="the-rest-of-word">${languageSettings[this.language][2].slice(1)}</span></a
                 >
               </li>
             </ul>
@@ -88,7 +110,9 @@ export default class Main {
               ${languageSettings[this.language][3]}
               <div class="intro__buttons">
                 <button class="button intro__button button_active">
-                  <span class="colored-fist-letter">${languageSettings[this.language][4][0]}</span>${languageSettings[this.language][4].slice(1)}
+                  <span class="colored-fist-letter">${
+                    languageSettings[this.language][4][0]
+                  }</span>${languageSettings[this.language][4].slice(1)}
                 </button>
               </div>
             </div>
@@ -110,21 +134,29 @@ export default class Main {
   }
 
   changeLanguage = () => {
-    if (this.language === "ru") {
-      this.language = "en";
-      this.createMainPage();
-      this.mainPageHandler();
-      localStorage.setItem('language',this.getLanguage());
-    } else {
+    this.language = this.language === "ru" ? "en" : "ru";
+
+    if (document.querySelector(".gallery")) {
+      const gallery = new Gallery(this.language);
       
-      this.language = "ru";
+      const firstLetters=document.querySelectorAll('.colored-fist-letter');
+      const words=document.querySelectorAll('.the-rest-of-word');
+
+      for (let i=0;i<firstLetters.length;i++){
+        firstLetters[i].textContent=languageSettings[this.language][i][0];
+        words[i].textContent=languageSettings[this.language][i].slice(1);
+      }
+      
+      gallery.showGallery();
+    } else {
       this.createMainPage();
       this.mainPageHandler();
-      localStorage.setItem('language',this.getLanguage());
     }
+
+    localStorage.setItem("language", this.getLanguage());
   };
 
-  getLanguage(){
+  getLanguage() {
     return this.language;
   }
 }
