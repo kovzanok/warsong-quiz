@@ -10,9 +10,9 @@ export default class Main {
   navigationHandler() {
     const hamburger = document.querySelector(".hamburger");
     const navigation = document.querySelector(".navigation");
-    const galleryLink = navigation.lastElementChild;
+    const galleryLink = navigation.querySelectorAll(".navigation__link")[2];
     const quizLink = navigation.querySelectorAll(".navigation__link")[1];
-    const logo = document.querySelector(".logo-image");
+    const languageBlock = document.querySelector(".navigation__language");
 
     const closeHamburger = () => {
       hamburger.classList.remove("hamburger_active");
@@ -57,7 +57,7 @@ export default class Main {
 
     document.onclick = menuClickHandler;
     quizLink.addEventListener("click", quizLinkHandler);
-    logo.addEventListener("click", this.changeLanguage);
+    languageBlock.addEventListener("click", this.changeLanguage);
     galleryLink.addEventListener("click", galleryLinkHandler);
   }
 
@@ -115,7 +115,14 @@ export default class Main {
       ][2].slice(1)}</span></a
                 >
               </li>
+              <li class="navigation__item">
+                <div class="navigation__language">
+                  <img class="language language_ru" src='./src/img/ru.png'>
+                  <img class="language language_en" src='./src/img/en.png'>
+                </div>
+              </li>
             </ul>
+            
           </nav>
         </div>
       </header>
@@ -147,10 +154,12 @@ export default class Main {
         </div>
       </footer>`
     );
+    
+    document.querySelector(`.language_${this.language}`).classList.add('language_active');
   }
 
-  changeLanguage = () => {
-    this.language = this.language === "ru" ? "en" : "ru";
+  changeLanguage = (e) => {
+    this.language = e.target.src.indexOf("ru.png") !== -1 ? "ru" : "en";
 
     if (document.querySelector(".gallery")) {
       const gallery = new Gallery(this.language);
@@ -168,7 +177,8 @@ export default class Main {
       this.createMainPage();
       this.mainPageHandler();
     }
-
+    
+    e.target.classList.add('language_active');
     localStorage.setItem("language", this.getLanguage());
   };
 
