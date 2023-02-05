@@ -8,51 +8,61 @@ export default class Main {
   }
 
   navigationHandler() {
-    console.log(this)
     const hamburger = document.querySelector(".hamburger");
     const navigation = document.querySelector(".navigation");
     const galleryLink = navigation.lastElementChild;
     const quizLink = navigation.querySelectorAll(".navigation__link")[1];
     const logo = document.querySelector(".logo-image");
 
-    const hamburgerClickHandler = (e) => {
-      //console.log(e.target);
-      //console.log(hamburger)
-      hamburger.classList.toggle("hamburger_active");
-      navigation.classList.toggle("navigation_active");
-      document.body.classList.toggle("body_lock");
+    const closeHamburger = () => {
+      hamburger.classList.remove("hamburger_active");
+      navigation.classList.remove("navigation_active");
+      document.body.classList.remove("body_lock");
     };
 
-    
+    const openHamburger = () => {
+      hamburger.classList.add("hamburger_active");
+      navigation.classList.add("navigation_active");
+      document.body.classList.add("body_lock");
+    };
+
+    const hamburgerClickHandler = () => {
+      if (hamburger.classList.contains("hamburger_active")) {
+        closeHamburger();
+      } else {
+        openHamburger();
+      }
+    };
 
     const menuClickHandler = (e) => {
-      console.log(e.target)
-      if (e.target.classList.contains('hamburger')||e.target.closest('.hamburger')||e.target.classList.contains('navigation__link')||e.target.closest('.navigation__link')){
-        hamburgerClickHandler(e);
+      if (
+        e.target.classList.contains("hamburger") ||
+        e.target.closest(".hamburger")
+      ) {
+        hamburgerClickHandler();
+      } else {
+        closeHamburger();
       }
-
     };
 
-   
-
-    const quizLinkHandler=()=>{
+    const quizLinkHandler = () => {
       const quiz = new Quiz(this.getLanguage());
       quiz.createQuiz();
-    }
+    };
 
-    const galleryLinkHandler=()=>{
+    const galleryLinkHandler = () => {
       const gallery = new Gallery(this.language);
       gallery.showGallery();
-    }
+    };
 
-    document.onclick= menuClickHandler;
+    document.onclick = menuClickHandler;
     quizLink.addEventListener("click", quizLinkHandler);
     logo.addEventListener("click", this.changeLanguage);
     galleryLink.addEventListener("click", galleryLinkHandler);
   }
 
   mainPageHandler() {
-    const startQuizButton=document.querySelector('.intro__button');
+    const startQuizButton = document.querySelector(".intro__button");
     const quiz = new Quiz(this.getLanguage());
 
     startQuizButton.addEventListener("click", quiz.createQuiz);
@@ -82,21 +92,27 @@ export default class Main {
                 <a class="navigation__link" href="index.html"
                   ><span class="colored-fist-letter">${
                     languageSettings[this.language][0][0]
-                  }</span><span class="the-rest-of-word">${languageSettings[this.language][0].slice(1)}</span></a
+                  }</span><span class="the-rest-of-word">${languageSettings[
+        this.language
+      ][0].slice(1)}</span></a
                 >
               </li>
               <li class="navigation__item">
                 <a class="navigation__link" href="#"
                   ><span class="colored-fist-letter">${
                     languageSettings[this.language][1][0]
-                  }</span><span class="the-rest-of-word">${languageSettings[this.language][1].slice(1)}</span></a
+                  }</span><span class="the-rest-of-word">${languageSettings[
+        this.language
+      ][1].slice(1)}</span></a
                 >
               </li>
               <li class="navigation__item">
                 <a class="navigation__link" href="#"
                   ><span class="colored-fist-letter">${
                     languageSettings[this.language][2][0]
-                  }</span><span class="the-rest-of-word">${languageSettings[this.language][2].slice(1)}</span></a
+                  }</span><span class="the-rest-of-word">${languageSettings[
+        this.language
+      ][2].slice(1)}</span></a
                 >
               </li>
             </ul>
@@ -138,15 +154,15 @@ export default class Main {
 
     if (document.querySelector(".gallery")) {
       const gallery = new Gallery(this.language);
-      
-      const firstLetters=document.querySelectorAll('.colored-fist-letter');
-      const words=document.querySelectorAll('.the-rest-of-word');
 
-      for (let i=0;i<firstLetters.length;i++){
-        firstLetters[i].textContent=languageSettings[this.language][i][0];
-        words[i].textContent=languageSettings[this.language][i].slice(1);
+      const firstLetters = document.querySelectorAll(".colored-fist-letter");
+      const words = document.querySelectorAll(".the-rest-of-word");
+
+      for (let i = 0; i < firstLetters.length; i++) {
+        firstLetters[i].textContent = languageSettings[this.language][i][0];
+        words[i].textContent = languageSettings[this.language][i].slice(1);
       }
-      
+
       gallery.showGallery();
     } else {
       this.createMainPage();
