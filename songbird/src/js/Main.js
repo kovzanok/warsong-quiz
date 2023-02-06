@@ -146,9 +146,9 @@ export default class Main {
       <footer class="footer">
         <div class="wrapper footer__wrapper">
           <ul class="footer__links">
-            <li class="link-element"><a class="footer__link" href="#">RSS</a></li>
+            <li class="link-element"><a class="footer__link" href="https://rs.school/js/" target="_blank">RSS</a></li>
             <li class="link-element">
-              <a class="footer__link" href="#">©kovzanok, 2023</a>
+              <a class="footer__link" href="https://github.com/kovzanok" target="_blank">©kovzanok, 2023</a>
             </li>
           </ul>
         </div>
