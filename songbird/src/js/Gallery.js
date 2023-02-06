@@ -50,7 +50,7 @@ export default class Gallery {
   galleryClickHandler = (e) => {
     const logo = document.querySelector(".logo-image");
     const pseudoMain = new Main(localStorage.getItem("language"));
-    logo.addEventListener("click", pseudoMain.changeLanguage);
+    
     pseudoMain.navigationHandler();
 
     const modalClickHandler = (e) => {
@@ -64,7 +64,7 @@ export default class Gallery {
         setTimeout(function () {
           e.target.closest(".modal").remove();
         }, 300);
-        document.body.classList.remove("body_lock");
+        document.body.style.overflow='auto';
       }
     };
 
@@ -136,7 +136,8 @@ export default class Gallery {
     infoModal.classList.add("modal_active");
 
     this.generateInfoPlayer(unit);
-    document.body.classList.add("body_lock");
+    
+    document.body.style.overflow='hidden';
   }
 
   generateInfoPlayer(unit) {

@@ -6,7 +6,7 @@ export default class Result {
   }
 
   createResultWindow() {
-    document.body.classList.add("body_lock");
+    document.body.style.overflow='hidden';
     const resultBlock = document.createElement("DIV");
     resultBlock.classList.add("modal");
     resultBlock.innerHTML = `
@@ -45,7 +45,7 @@ export default class Result {
 
   static removeResultWindow() {
     document.querySelector(".modal").remove();
-    document.body.classList.remove("body_lock");
+    document.body.style.overflow='';
     window.scrollTo(0, 0);
   }
 }

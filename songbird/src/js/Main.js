@@ -23,7 +23,7 @@ export default class Main {
     const openHamburger = () => {
       hamburger.classList.add("hamburger_active");
       navigation.classList.add("navigation_active");
-      document.body.classList.add("body_lock");
+      document.querySelector('body').classList.add("body_lock");
     };
 
     const hamburgerClickHandler = () => {
