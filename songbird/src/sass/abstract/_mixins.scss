@@ -67,3 +67,9 @@
     @content;
   }
 }
+
+@mixin media-tablet-info-column {
+  @media (max-width: $tablet-info-breakpoint) {
+    @content;
+  }
+}

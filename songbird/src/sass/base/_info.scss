@@ -1,6 +1,6 @@
 .info__image {
   @extend %unit-image;
-  @include media-tablet {
+  @include media-tablet-info-column {
     align-self: center;
   }
 }
@@ -14,7 +14,7 @@
       padding-top: 25px;
     }
   }
-  @include media-tablet {
+  @include media-tablet-info-column {
     flex-basis: 50%;
     padding-left: 20px;
     > * {
@@ -25,7 +25,7 @@
 
 .info__name {
   @include unit-name($font-size: 2rem, $top: 25px, $left: -15px);
-  @include media-tablet {
+  @include media-tablet-info-column {
     text-align: center;
     @include unit-name($font-size: 2rem, $top: 30px, $left: 0px);
   }
@@ -33,7 +33,7 @@
 
 .info__head {
   display: flex;
-  @include media-tablet {
+  @include media-tablet-info-column {
     flex-direction: column;
   }
 }
