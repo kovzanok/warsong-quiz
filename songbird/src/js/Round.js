@@ -2,16 +2,16 @@ import { Player } from "./Player.js";
 import languageSettings from "./language.js";
 
 export class Round {
-  constructor(roundNumber, unitsData, score,language) {
+  constructor(roundNumber, unitsData, score, language) {
     this.roundNumber = roundNumber;
     this.unitsData = unitsData;
-    
+
     this.isGuessed = false;
     this.rightAlarm = new Audio("./src/sound/right.mp3");
     this.wrongAlarm = new Audio("./src/sound/wrong.mp3");
     this.points = 5;
     this.score = score;
-    this.language=language;
+    this.language = language;
   }
 
   generateRandomQuestion() {
@@ -58,14 +58,18 @@ export class Round {
       <div class="info__body">
         <div class="info__name">${cardData.name}</div>
         <div class="info__name">${cardData.nameEng}</div>
-        <div class="info__player">
-        <div class="player__control player__control_play"></div>
+        <div class="info__player player">
+        <div class="player__bar">
+          <div class="player__control player__control_play"></div>
           <div class="player__playtime"><div class="player__playtime player__playtime_played"></div></div>
+        </div>
+        
           <div class="player__info">
             <div class='info__current'>00:00</div>
             <div class='info__divider'>/</div>
             <div class='info__duration'></div>
           </div>
+          
         </div>
       </div>
     </div>
@@ -83,7 +87,6 @@ export class Round {
 
     if (this.unitAudio) {
       this.unitAudio.pause();
-      
     }
 
     this.unitAudio = new Audio(this.cardData.audio);
@@ -103,11 +106,11 @@ export class Round {
   }
 
   resetRound() {
-    
     this.roundList[this.roundNumber].classList.remove("round_active");
     document.querySelector(".question__name").textContent = "*****";
-    document.querySelector(".quiz__info").textContent =
-    `${languageSettings[this.language][11]}`;
+    document.querySelector(".quiz__info").textContent = `${
+      languageSettings[this.language][11]
+    }`;
     this.nextRoundButton.classList.add("button_nonactive");
     this.nextRoundButton.classList.remove("button_active");
 
@@ -120,7 +123,7 @@ export class Round {
       this.mainPlayer.playerClickHandler
     );
 
-    this.mainPlayer.audio=null;
+    this.mainPlayer.audio = null;
 
     if (this.mainPlayer.playerTimelinePlayed) {
       this.mainPlayer.playerTimelinePlayed.remove();
@@ -131,7 +134,9 @@ export class Round {
     }
 
     this.nextRoundButton.textContent =
-      this.roundNumber === 4 ? `${languageSettings[this.language][13]}` : `${languageSettings[this.language][12]}`;
+      this.roundNumber === 4
+        ? `${languageSettings[this.language][13]}`
+        : `${languageSettings[this.language][12]}`;
   }
 
   playRound() {

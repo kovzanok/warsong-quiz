@@ -57,9 +57,8 @@
 
   .info__player{
     align-self: center;
-    @include media-mobilesmall{
-        flex-wrap: wrap;
-    }
+    flex-wrap: wrap;
+    
   }
 
   .player__control{

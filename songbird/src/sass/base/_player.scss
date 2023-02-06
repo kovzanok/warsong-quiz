@@ -1,18 +1,17 @@
 .question__player,
 .info__player {
+  > * {
+    margin-left: 5px;
+  }
   @extend %player;
-  @include media-mobile {
-    align-self: center;
+  @include media-tablet {
     flex-wrap: wrap;
     justify-content: center;
-  }
-  @include media-mobilesmall{
-    flex-wrap: nowrap;
-    justify-content: center;
+    align-self: center;
   }
 }
 
-.player__bar{
+.player__bar {
   display: flex;
   align-items: center;
   width: 100%;

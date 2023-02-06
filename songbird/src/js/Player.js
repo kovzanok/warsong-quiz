@@ -16,12 +16,12 @@ export class Player {
   }
 
   playerClickHandler = (e) => {
-    this.playerTimeline =
-      e.target.parentNode.querySelector(".player__playtime");
-    this.playerTimelinePlayed = e.target.parentNode.querySelector(
+    this.playerTimeline = this.player.querySelector(".player__playtime");
+    this.playerTimelinePlayed = this.player.querySelector(
       ".player__playtime_played"
     );
-
+    this.volumeBar = this.player.querySelector(".volume__bar");
+    this.changeMusicVolume();
     if (e.target.classList.contains("player__control")) {
       this.controlButton = e.target;
 
@@ -36,7 +36,8 @@ export class Player {
       this.playerTimelinePlayed = this.playerTimeline.firstElementChild;
 
       this.rewindSong(e);
-    }
+    } 
+    this.changeVolumeHandler();
     this.updateTimeBar();
   };
 
@@ -58,9 +59,11 @@ export class Player {
   setAudioDuration() {
     const durationTime = this.player.querySelector(".info__duration");
     this.audio.onloadedmetadata = () => {
-      durationTime.textContent = `${String(Math.floor(
-        this.audio.duration / 60
-      )).padStart(2,'0')}:${String(Math.floor(this.audio.duration % 60)).padStart(2,'0')}`;
+      durationTime.textContent = `${String(
+        Math.floor(this.audio.duration / 60)
+      ).padStart(2, "0")}:${String(
+        Math.floor(this.audio.duration % 60)
+      ).padStart(2, "0")}`;
     };
     this.setCurrentTime();
   }
@@ -80,5 +83,29 @@ export class Player {
       setTimeout(this.updateTimeBar, 1000);
       this.setNewAudioTime();
     }
+  };
+
+  changeMusicVolume = () => {
+    this.audio.volume = this.volumeBar.value / 100;
+  };
+
+  changeVolumeHandler = () => {
+    this.volumeBar.addEventListener("click", this.changeMusicVolume);
+    this.volumeBar.addEventListener("touchend", this.changeMusicVolume);
+    this.volumeBar.onmousedown = () => {
+      this.changeMusicVolume();
+      this.volumeBar.addEventListener("mousemove", this.changeMusicVolume);
+      this.volumeBar.onmouseup = () => {
+        this.volumeBar.removeEventListener("mousemove", this.changeMusicVolume);
+      };
+    };
+
+    this.volumeBar.ontouchstart = () => {
+      this.changeMusicVolume();
+      this.volumeBar.addEventListener("touchmove", this.changeMusicVolume);
+      this.volumeBar.ontouchend = () => {
+        this.volumeBar.removeEventListener("touchmove", this.changeMusicVolume);
+      };
+    };
   };
 }

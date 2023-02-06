@@ -69,7 +69,8 @@ export default class Gallery {
     };
 
     if (e.target.classList.contains("block__item")) {
-      if (this.galleryModal) this.galleryModal.removeEventListener("click", modalClickHandler);
+      if (this.galleryModal)
+        this.galleryModal.removeEventListener("click", modalClickHandler);
       const unit =
         unitsData[this.language][e.target.dataset.fraction][
           e.target.dataset.unit
@@ -101,12 +102,16 @@ export default class Gallery {
                       class="player__playtime player__playtime_played"
                     ></div>
                   </div>
+
                 </div>
 
                 <div class="player__info">
                   <div class="info__current">00:00</div>
                   <div class="info__divider">/</div>
                   <div class="info__duration">00:00</div>
+                </div>
+                <div class="player__volume">
+                  <input class="volume__bar" type="range" value="80" />
                 </div>
               </div>
             </div>

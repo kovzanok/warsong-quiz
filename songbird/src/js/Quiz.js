@@ -13,7 +13,8 @@ export default class Quiz {
     this.round = new Round(
       this.roundNumber,
       unitsData[this.language],
-      this.score,this.language
+      this.score,
+      this.language
     );
   }
 
@@ -42,18 +43,23 @@ export default class Quiz {
       <div class="question__image"></div>
       <div class="question__body">
         <div class="question__name">*****</div>
-        <div class="question__player">
-          <div class="player__control player__control_play"></div>
+        <div class="question__player player">
+          <div class="player__bar">
+            <div class="player__control player__control_play"></div>
 
-          <div class="player__playtime">
-            <div class="player__playtime player__playtime_played"></div>
+            <div class="player__playtime">
+              <div class="player__playtime player__playtime_played"></div>
+            </div>
           </div>
-          
           <div class="player__info">
             <div class='info__current'>00:00</div>
             <div class='info__divider'>/</div>
             <div class='info__duration'></div>
           </div>
+          <div class="player__volume">
+            <input class="volume__bar" type="range" value="80" />
+          </div>
+          
         </div>
       </div>
     </div>
@@ -87,7 +93,8 @@ export default class Quiz {
           this.round = new Round(
             this.roundNumber,
             unitsData[this.language],
-            this.score,this.language
+            this.score,
+            this.language
           );
           this.round.playRound();
         } else {
@@ -105,7 +112,7 @@ export default class Quiz {
   showQuizResult() {
     const result = new Result(this.score);
     result.createResultWindow();
-    const quizAgain = new Quiz(localStorage.getItem('language'));
+    const quizAgain = new Quiz(localStorage.getItem("language"));
 
     if (document.querySelector(".button_restart")) {
       document
@@ -124,7 +131,7 @@ export default class Quiz {
   };
 
   goToMain() {
-    const main = new Main(localStorage.getItem('language'));
+    const main = new Main(localStorage.getItem("language"));
     main.createMainPage();
     main.mainPageHandler();
     Result.removeResultWindow();

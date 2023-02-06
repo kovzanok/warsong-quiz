@@ -41,4 +41,7 @@
 .info__description {
   padding-top: 10px;
   text-align: left;
+  @include media-mobile{
+    text-align: center;
+  }
 }
