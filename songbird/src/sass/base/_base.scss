@@ -1,12 +1,14 @@
 html {
   font-size: 10px;
   color: $color-text;
+  
 }
 
 body {
+  overflow: auto;
   @font-face {
     font-family: "Frizqt";
-    src: url("../../fonts/FRIZQT__.woff") format("woff");
+    src: url("../fonts/FRIZQT__.woff") format("woff");
   }
   @extend %font-primary;
   min-height: 100vh;

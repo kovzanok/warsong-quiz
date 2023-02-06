@@ -17,13 +17,13 @@ export default class Main {
     const closeHamburger = () => {
       hamburger.classList.remove("hamburger_active");
       navigation.classList.remove("navigation_active");
-      document.body.classList.remove("body_lock");
+      document.body.classList.remove('body_lock');
     };
 
     const openHamburger = () => {
       hamburger.classList.add("hamburger_active");
       navigation.classList.add("navigation_active");
-      document.querySelector('body').classList.add("body_lock");
+      document.body.classList.add('body_lock');
     };
 
     const hamburgerClickHandler = () => {
@@ -35,13 +35,19 @@ export default class Main {
     };
 
     const menuClickHandler = (e) => {
+      
       if (
         e.target.classList.contains("hamburger") ||
         e.target.closest(".hamburger")
       ) {
         hamburgerClickHandler();
-      } else {
+      } 
+      else if(e.target.classList.contains('block__item')||e.target.closest('.modal__content')){
+        
+      }
+      else {
         closeHamburger();
+        
       }
     };
 

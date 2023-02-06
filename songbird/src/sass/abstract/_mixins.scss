@@ -21,11 +21,7 @@
   }
 }
 
-@mixin player-button($url) {
-  background-image: url($url);
-  background-position: center;
-  background-repeat: no-repeat;
-}
+
 
 @mixin showOrHideModal($opacity, $visibility) {
   opacity: $opacity;

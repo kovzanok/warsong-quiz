@@ -22,19 +22,15 @@
   height: 40px;
   cursor: pointer;
   @extend %transition;
-  &_play {
-    @include player-button($url: "../img/play.svg");
-  }
-  &_pause {
-    @include player-button($url: "../img/pause.svg");
-  }
-  @include media-tablet {
-    margin-right: 5px;
-  }
+  @extend %player-button;
+  margin-right: 5px;
+  
   @include media-mobile {
     padding-left: 5px;
   }
 }
+
+
 
 .player__playtime {
   position: relative;

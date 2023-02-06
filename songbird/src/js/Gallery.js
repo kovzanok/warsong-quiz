@@ -48,7 +48,7 @@ export default class Gallery {
   }
 
   galleryClickHandler = (e) => {
-    const logo = document.querySelector(".logo-image");
+    
     const pseudoMain = new Main(localStorage.getItem("language"));
     
     pseudoMain.navigationHandler();
@@ -63,18 +63,21 @@ export default class Gallery {
 
         setTimeout(function () {
           e.target.closest(".modal").remove();
+          document.body.classList.remove('body_lock');
         }, 300);
-        document.body.style.overflow='auto';
+        
       }
     };
 
     if (e.target.classList.contains("block__item")) {
-      if (this.galleryModal)
-        this.galleryModal.removeEventListener("click", modalClickHandler);
+      if (this.galleryModal) this.galleryModal.removeEventListener("click", modalClickHandler);
       const unit =
         unitsData[this.language][e.target.dataset.fraction][
           e.target.dataset.unit
         ];
+      
+      document.body.classList.add('body_lock');
+      
       this.createInfoModal(unit);
       this.galleryModal = document.querySelector(".gallery__modal");
       this.galleryModal.addEventListener("click", modalClickHandler);
@@ -82,6 +85,7 @@ export default class Gallery {
   };
 
   createInfoModal(unit) {
+    
     const infoModal = document.createElement("DIV");
     infoModal.className = "modal gallery__modal";
     const infoBody = `
@@ -96,7 +100,7 @@ export default class Gallery {
               <div class="info__name">${unit.nameEng}</div>
               <div class="info__player">
                 <div class="player__bar">
-                  <div class="player__control player__control_play"></div>
+                  <div class="player__control"></div>
                   <div class="player__playtime">
                     <div
                       class="player__playtime player__playtime_played"
@@ -130,14 +134,16 @@ export default class Gallery {
 
     infoModal.innerHTML = infoBody;
     document.body.append(infoModal);
+    
     document.querySelector(
       ".info__image"
     ).style.backgroundImage = `url(${unit.image})`;
+    document.querySelector('.player__control').style.backgroundImage = `url(./src/img/play.svg)`;
     infoModal.classList.add("modal_active");
 
     this.generateInfoPlayer(unit);
     
-    document.body.style.overflow='hidden';
+    
   }
 
   generateInfoPlayer(unit) {

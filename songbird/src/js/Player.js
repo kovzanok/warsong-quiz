@@ -6,12 +6,12 @@ export class Player {
   togglePlay() {
     if (!this.audio.paused) {
       this.audio.pause();
-      this.controlButton.classList.add("player__control_play");
-      this.controlButton.classList.remove("player__control_pause");
+      this.controlButton.style.backgroundImage = `url(./src/img/play.svg)`;
+      
     } else {
       this.audio.play();
-      this.controlButton.classList.remove("player__control_play");
-      this.controlButton.classList.add("player__control_pause");
+      this.controlButton.style.backgroundImage = `url(./src/img/pause.svg)`;
+      
     }
   }
 
@@ -20,8 +20,8 @@ export class Player {
     this.playerTimelinePlayed = this.player.querySelector(
       ".player__playtime_played"
     );
-    this.volumeBar = this.player.querySelector(".volume__bar");
-    this.changeMusicVolume();
+    if (this.player.querySelector(".volume__bar")) this.volumeBar = this.player.querySelector(".volume__bar");
+    if (this.volumeBar)this.changeMusicVolume();
     if (e.target.classList.contains("player__control")) {
       this.controlButton = e.target;
 
@@ -37,7 +37,7 @@ export class Player {
 
       this.rewindSong(e);
     } 
-    this.changeVolumeHandler();
+    if (this.volumeBar) this.changeVolumeHandler();
     this.updateTimeBar();
   };
 

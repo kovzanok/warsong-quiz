@@ -60,7 +60,7 @@ export class Round {
         <div class="info__name">${cardData.nameEng}</div>
         <div class="info__player player">
         <div class="player__bar">
-          <div class="player__control player__control_play"></div>
+          <div class="player__control"></div>
           <div class="player__playtime"><div class="player__playtime player__playtime_played"></div></div>
         </div>
         
@@ -76,7 +76,7 @@ export class Round {
     <div class="info__description">
       ${cardData.description}
     </div>`;
-
+    
     document.querySelector(".quiz__info").innerHTML = infoCard;
     const infoImage = document.querySelector(".info__image");
     infoImage.style.backgroundImage = `url(${cardData.image})`;
@@ -84,7 +84,9 @@ export class Round {
 
   generateInfoPlayer() {
     const infoPlayer = document.querySelector(".info__player");
-
+    infoPlayer.querySelector(
+      ".player__control"
+    ).style.backgroundImage = `url(./src/img/play.svg)`;
     if (this.unitAudio) {
       this.unitAudio.pause();
     }
@@ -96,12 +98,11 @@ export class Round {
     unitPlayer.setAudioDuration();
 
     this.unitAudio.onended = () => {
-      infoPlayer
-        .querySelector(".player__control")
-        .classList.add("player__control_play");
-      infoPlayer
-        .querySelector(".player__control")
-        .classList.remove("player__control_pause");
+      infoPlayer.querySelector(
+        ".player__control"
+      ).style.backgroundImage = `url(./src/img/play.svg)`;
+
+      
     };
   }
 
@@ -162,8 +163,9 @@ export class Round {
 
     this.mainPlayer.setAudioDuration();
     this.questionAudio.onended = () => {
-      this.questionPlayerControl.classList.add("player__control_play");
-      this.questionPlayerControl.classList.remove("player__control_pause");
+      this.questionPlayerControl.classList.style.backgroundImage = `url(./src/img/play.svg)`;
+      
+      
     };
 
     const answers = document.querySelector(".answers");
@@ -224,8 +226,8 @@ export class Round {
 
   pauseMainAudio() {
     this.questionAudio.pause();
-    this.questionPlayerControl.classList.add("player__control_play");
-    this.questionPlayerControl.classList.remove("player__control_pause");
+    this.questionPlayerControl.style.backgroundImage = `url(./src/img/play.svg)`;
+    
   }
 
   makeNextRoundButtonActive() {

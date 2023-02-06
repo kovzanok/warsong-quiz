@@ -45,7 +45,7 @@ export default class Quiz {
         <div class="question__name">*****</div>
         <div class="question__player player">
           <div class="player__bar">
-            <div class="player__control player__control_play"></div>
+            <div class="player__control"></div>
 
             <div class="player__playtime">
               <div class="player__playtime player__playtime_played"></div>
@@ -76,7 +76,10 @@ export default class Quiz {
     </button>
   </div>
 </section>`;
-
+    document.querySelector(
+      ".player__control"
+    ).style.backgroundImage = `url(./src/img/play.svg)`;
+    
     document.querySelector("footer").innerHTML = "";
     this.round.playRound();
     this.startQuiz();

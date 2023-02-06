@@ -4,7 +4,8 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "style": "sass --watch src/sass/style.scss src/sass/style.css"
+    "style": "sass --watch src/sass/style.scss src/sass/style.css",
+    "build": "webpack"
   },
   "repository": {
     "type": "git",
@@ -15,5 +16,27 @@
   "bugs": {
     "url": "https://github.com/rolling-scopes-school/kovzanok-JSFEPRESCHOOL2022Q4/issues"
   },
-  "homepage": "https://github.com/rolling-scopes-school/kovzanok-JSFEPRESCHOOL2022Q4#readme"
+  "homepage": "https://github.com/rolling-scopes-school/kovzanok-JSFEPRESCHOOL2022Q4#readme",
+  "dependencies": {
+    "css-loader": "^4.3.0",
+    "imagemin": "^8.0.1",
+    "resolve-url-loader": "^5.0.0",
+    "sass-resources-loader": "^2.2.5",
+    "style-loader": "^3.3.1",
+    "webpack-cli": "^5.0.1"
+  },
+  "devDependencies": {
+    "@babel/core": "^7.20.12",
+    "@babel/preset-env": "^7.20.2",
+    "babel-loader": "^9.1.2",
+    "file-loader": "^6.2.0",
+    "html-loader": "^4.2.0",
+    "html-webpack-plugin": "^5.5.0",
+    "postcss": "^8.4.21",
+    "postcss-loader": "^7.0.2",
+    "sass": "^1.58.0",
+    "sass-loader": "^13.2.0",
+    "url-loader": "^4.1.1",
+    "webpack": "^5.75.0"
+  }
 }
