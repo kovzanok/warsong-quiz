@@ -81,8 +81,8 @@ export default class Main {
       document.querySelector("main").remove();
       document.querySelector("footer").remove();
     }
-    document.querySelector("script").insertAdjacentHTML(
-      "beforebegin",
+    document.body.innerHTML=(
+      
       `<header class="header">
         <div class="wrapper header__wrapper">
           <div class="header__logo">
