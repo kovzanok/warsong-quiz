@@ -9,7 +9,7 @@ export default class Quiz {
     this.roundNumber = 0;
     this.score = 0;
 
-    this.language = language;
+    this.language = language || 'ru';
     this.round = new Round(
       this.roundNumber,
       unitsData[this.language],
@@ -134,7 +134,7 @@ export default class Quiz {
   };
 
   goToMain() {
-    const main = new Main(localStorage.getItem("language"));
+    const main = new Main(localStorage.getItem("language")||'ru');
     main.createMainPage();
     main.mainPageHandler();
     Result.removeResultWindow();
