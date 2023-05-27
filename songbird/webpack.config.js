@@ -1,6 +1,6 @@
-const webpack = require("webpack");
-
+const HtmlWebpackPlugin = require("html-webpack-plugin");
 const path = require("path");
+const CopyPlugin = require("copy-webpack-plugin");
 
 module.exports = {
   entry: ["./src/js/index.js"],
@@ -8,9 +8,18 @@ module.exports = {
     publicPath: "./",
     path: path.resolve(__dirname, "dist"),
     filename: "main.js",
-    
   },
-
+  plugins: [
+    new HtmlWebpackPlugin({
+      template: "./index.html",
+    }),
+    new CopyPlugin({
+      patterns: [
+        { from: "./src/img", to: "./src/img" },
+        { from: "./src/sound", to: "./src/sound" },
+      ],
+    }),
+  ],
   module: {
     rules: [
       {
@@ -27,7 +36,6 @@ module.exports = {
         test: /\.scss$/,
         use: ["style-loader", "css-loader", "sass-loader"],
       },
-      
 
       {
         test: /\.(png|svg|jpg|jpeg|woff)$/i,
