@@ -6,5 +6,5 @@
 ## Features
  - Responsive UI
  - Language settings
- - Audio phrases depends on laguage selected
+ - Audio phrases depends on language selected
  - All game unit gallery
