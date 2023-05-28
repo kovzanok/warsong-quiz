@@ -195,7 +195,7 @@ export default class Main {
       this.mainPageHandler();
     }
 
-    localStorage.setItem("language", this.getLanguage());
+    localStorage.setItem("language-quiz", this.getLanguage());
   };
 
   getLanguage() {

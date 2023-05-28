@@ -115,7 +115,7 @@ export default class Quiz {
   showQuizResult() {
     const result = new Result(this.score);
     result.createResultWindow();
-    const quizAgain = new Quiz(localStorage.getItem("language"));
+    const quizAgain = new Quiz(localStorage.getItem("language-quiz"));
 
     if (document.querySelector(".button_restart")) {
       document
@@ -134,7 +134,7 @@ export default class Quiz {
   };
 
   goToMain() {
-    const main = new Main(localStorage.getItem("language")||'ru');
+    const main = new Main(localStorage.getItem("language-quiz")||'ru');
     main.createMainPage();
     main.mainPageHandler();
     Result.removeResultWindow();

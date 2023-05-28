@@ -49,7 +49,7 @@ export default class Gallery {
 
   galleryClickHandler = (e) => {
     
-    const pseudoMain = new Main(localStorage.getItem("language"));
+    const pseudoMain = new Main(localStorage.getItem("language-quiz"));
     
     pseudoMain.navigationHandler();
 
